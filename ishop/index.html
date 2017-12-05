@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Canvas API DrawImage</title>
+	<title>Yakim13 - the first homework (React APP)</title>
 	<meta charset="UTF-8">
-	<style>
-		*{
-			margin: 0px;
-			padding: 0px;
-		}
-		body{
-			text-align: center;
-			background: #DDD;
-			font: normal 20px Oswald, verdana, sans-seriff;
-		}
-		canvas{
-			border: 1px solid black;
-		}
-	</style>
+    <script src="https://unpkg.com/react@15/dist/react.js"></script> 
+    <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> 
+    <script src="ishop.js"></script>
+    <link rel="stylesheet" type="text/css" href="ishop.css" />
+    <script>
+        function initiate(){
+            ReactDOM.render(
+              React.createElement(iShop), 
+              document.querySelector('section') 
+            );
+        }
+        addEventListener('load',initiate);
+    </script>
+
+
 </head>
-<body
+<body>
+    <h1>Homework #1</h1>
+    <hr>
 	<section>
-		<canvas id="canvas" width="500p" height="300"></canvas>
 	</section>
 </body>
 </html>
