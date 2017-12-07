@@ -1,53 +1,91 @@
 var iShop = React.createClass({
-    displayName: 'ishop',
 
-    render:function(){
-        return React.DOM.table('null',
-            React.DOM.caption('null', "Товары на складах"),
-            React.DOM.tr('null', 
-                React.DOM.th('null',"Товар"),
-                React.DOM.th('null',"Фото"),
-                React.DOM.th('null',"Цена"),
-                React.DOM.th('null',"Количество"),
-            ),
-            React.DOM.tr('null',
-                React.DOM.td('null',"11"),
-                React.DOM.td('null',"12"),
-                React.DOM.td('null',"13"),
-                React.DOM.td('null',"14"),        
-            ),
-            React.DOM.tr('null',
-                React.DOM.td('null',"21"),
-                React.DOM.td('null',"22"),
-                React.DOM.td('null',"23"),
-                React.DOM.td('null',"24"),        
-            ),
-            React.DOM.tr('null',
-                React.DOM.td('null',"31"),
-                React.DOM.td('null',"32"),
-                React.DOM.td('null',"33"),
-                React.DOM.td('null',"34"),        
-            ),
-            React.DOM.tr('null',
-                React.DOM.td('null',"41"),
-                React.DOM.td('null',"42"),
-                React.DOM.td('null',"43"),
-                React.DOM.td('null',"44"),        
-            ),
-        )   
-    }
-    
-    // render:function(){
-    //     return React.DOM.h1(
-    //         {id:"red"}, 
-    //         React.DOM.span('null',
-    //             React.DOM.em('null',"Hell"),
-    //             " o"),
-    //         " world", 
-    //         " что-то еще",
-    //         React.DOM.br(null),
-    //         React.DOM.a({href:"http://vk.com",target:"blank"}," ссылка VK"),
-    //     );
-    // },
-    
+    propTypes:{
+        goods:React.PropTypes.arrayOf(
+            React.PropTypes.shape({
+                name: React.PropTypes.string,
+                fotoLink: React.PropTypes.string,
+                price: React.PropTypes.number,
+                qnt: React.PropTypes.number,
+            })
+        )
+    },
+
+    render: function(){
+        var outTableCode=this.props.goods.map(function(v,i,a){
+            return  React.DOM.tr({key:v.uniqueCode},
+                        React.DOM.td(null,v.name),
+                        React.DOM.td(null,
+                            React.DOM.a({href:v.fotoLink,target:"blank"},"ссылка")),
+                        React.DOM.td(null,v.price),
+                        React.DOM.td(null,v.qnt),
+                    )
+            }
+        );
+        return  React.DOM.table(null,
+                    React.DOM.caption(null, "Товары на складе"),
+                    React.DOM.tbody(null,
+                        React.DOM.tr(null, 
+                            React.DOM.th(null,"Товар"),
+                            React.DOM.th(null,"Описание"),
+                            React.DOM.th(null,"Цена"),
+                            React.DOM.th(null,"Количество")),
+                        outTableCode
+                    )
+                );    
+    },
+
+    //array.forEach
+    /*
+    render: function(){
+        var outTableCode=[];
+        this.props.goods.forEach(function(v,i,a){
+              var block=React.DOM.tr({key:v.uniqueCode},
+                            React.DOM.td(null,v.name),
+                            React.DOM.td(null,
+                                React.DOM.a({href:v.fotoLink,target:"blank"},"ссылка")),
+                            React.DOM.td(null,v.price),
+                            React.DOM.td(null,v.qnt),
+                        )
+                outTableCode.push(block);
+            }
+        );
+        return  React.DOM.table(null,
+                    React.DOM.caption(null, "Товары на складе"),
+                    React.DOM.tbody(null,
+                        React.DOM.tr(null, 
+                            React.DOM.th(null,"Товар"),
+                            React.DOM.th(null,"Описание"),
+                            React.DOM.th(null,"Цена"),
+                            React.DOM.th(null,"Количество")),
+                        outTableCode
+                    )
+                );    
+    },
+    */
+
+    //array.map - callback (function arrow)
+    /*
+    render: function(){
+        var outTableCode=this.props.goods.map( v =>
+            React.DOM.tr({key:v.uniqueCode},
+                React.DOM.td(null,v.name),
+                React.DOM.td(null,
+                    React.DOM.a({href:v.fotoLink,target:"blank"},"ссылка")),
+                React.DOM.td(null,v.price),
+                React.DOM.td(null,v.qnt),
+            )
+        );
+        return React.DOM.table(null,
+                React.DOM.caption(null, "Товары на складе"),
+                React.DOM.tr({key:01}, 
+                  React.DOM.th(null,"Товар"),
+                  React.DOM.th(null,"Описание"),
+                  React.DOM.th(null,"Цена"),
+                  React.DOM.th(null,"Количество")),
+                outTableCode
+            );    
+    },
+    */
+
 });
