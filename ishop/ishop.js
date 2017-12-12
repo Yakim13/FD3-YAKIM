@@ -23,6 +23,7 @@ var iShop = React.createClass({
                         )
                 }
             );
+            console.log(outTableCode);
             return  React.DOM.table(null,
                         React.DOM.caption(null, "Товары на складе"),
                         React.DOM.tbody(null,

@@ -1,0 +1,30 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    text-align: center;
+}
+section{
+    padding: 20px;
+    width: 70%;
+    margin: auto;
+}
+div{
+    padding: 5px 0px;
+}
+hr{
+    width: 70%;
+    margin: auto;
+}
+select{
+    width: 100%;
+    border: 2px solid black;
+}
+option{
+    border: 1px solid #ccc;
+}
+.BoxList{
+    clear:both;
+}
+
