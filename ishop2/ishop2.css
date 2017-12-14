@@ -1,0 +1,26 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    text-align: center;
+}
+section{
+    padding: 20px;
+}
+hr{
+    width: 70%;
+    margin: auto;
+}
+table{
+    margin: auto;
+    border: 1px solid black;
+    width: 70%;
+    border-collapse: collapse;
+}
+td, th{
+    border: 1px solid black;
+}
+th{
+    background: burlywood;
+}

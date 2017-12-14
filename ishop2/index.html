@@ -1,23 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Yakim13 - the first homework (React APP)</title>
+	<title>Yakim13 - homework #3 (React APP)</title>
 	<meta charset="UTF-8">
     <script src="https://unpkg.com/react@15/dist/react.js"></script> 
     <script src="https://unpkg.com/react-dom@15/dist/react-dom.js"></script> 
-    <script src="ishop.js"></script>
-    <link rel="stylesheet" type="text/css" href="ishop.css" />
+    <script src="ishop2.js"></script>
+    <script src="goodsItem.js"></script>  
+    <script src="goodsEdit.js"></script>    
+    <link rel="stylesheet" type="text/css" href="ishop2.css" />
     <script>
         function initiate(){
             var product=[
-                {name:'NEOLINE X-COP 4500',uniqueCode:05073,fotoLink:'http://neoline.ru/products/radar_detectors/Neoline%2BX-COP%2B4500/',price:219.99,qnt:5},
-                {name:'NEOLINE X-COP 5700',uniqueCode:05074,fotoLink:'http://neoline.ru/products/radar_detectors/Neoline%2BX-COP%2B5700/',price:329.99,qnt:3},
-                {name:'NEOLINE X-COP 7500s',uniqueCode:05075,fotoLink:'http://neoline.ru/products/radar_detectors/NEOLINE%2BX-COP%2B7500s/',price:259.99,qnt:2},
-                {name:'NEOLINE X-COP 9000',uniqueCode:05076,fotoLink:'http://9000.neoline.ru/',price:429.99,qnt:10},
-                {name:'NEOLINE X-COP 9700',uniqueCode:05077,fotoLink:'http://9700.neoline.ru/',price:599.99,qnt:8},                                                
+                {name:'NEOLINE X-COP 4500',code:1,desc:'радар-детектор',price:219.99,qnt:2},
+                {name:'NEOLINE X-COP 5700',code:2,desc:'радар-детектор',price:329.99,qnt:12},
+                {name:'NEOLINE X-COP 7500s',code:3,desc:'радар-детектор',price:259.99,qnt:1},
+                {name:'NEOLINE X-COP 9000',code:4,desc:'гибрид',price:429.99,qnt:24},
+                {name:'NEOLINE X-COP 9700',code:5,desc:'гибрид',price:599.99,qnt:9},
+                {name:'NEOLINE X-COP 9000c',code:6,desc:'гибрид',price:339.99,qnt:3},
+                {name:'NEOLINE X-COP 9100',code:7,desc:'гибрид',price:499.99,qnt:11},
+                {name:'ALLIGATOR A-1S',code:8,desc:'автосигнализация',price:79.99,qnt:52},  
             ];
             ReactDOM.render(
-                React.createElement(iShop,{goods:product}), 
+                React.createElement(iShop2,{goods:product}), 
                 document.querySelector('section') 
             );
         }
@@ -25,8 +30,9 @@
     </script>
 </head>
 <body>
-    <h1>Homework #1</h1>
+    <h1>Homework #3</h1>
     <hr>
+    <h2>i-net Shop (List of Goods)</h2>
 	<section>
 	</section>
 </body>
