@@ -5,16 +5,20 @@
 body{
     text-align: center;
 }
+h1,h2{
+    background: #ccc;
+}
 section{
     padding: 20px;
+    position: relative;
+    background: -webkit-linear-gradient(top, #CCC, #FFF);
 }
 hr{
-    width: 70%;
+    width: 100%;
     margin: auto;
 }
 table{
     margin: auto;
-    border: 1px solid black;
     width: 70%;
     border-collapse: collapse;
 }
@@ -24,3 +28,18 @@ td, th{
 th{
     background: burlywood;
 }
+td:last-child{
+    border: none;
+}
+button{
+    background: -webkit-linear-gradient(top, #33f, #ddF);
+    color: white;
+    border-radius: 10px 10px;
+    margin: 2px;
+    width: 4em;
+}
+.newButton{
+    width: 10em;
+}
+
+

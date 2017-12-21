@@ -14,27 +14,47 @@ var iShop2 = React.createClass({
 
     getInitialState: function(){
         return{
-            intGoodsArr: this.props.goods.map(v =>v),       //клонируем массив props в state?? нужно ли в state?!
             keyEdit: false,                                 //ключ для появления поля редактирования параметров
-            triggerState:false,                             //триггер запуска render
-            statusButtonOk:'',                              //текстовая надпись для кнопки ok окна редактирования ??не нужно в state?
+            triggerState:false,                             //триггер запуска render                        
+            intGoodsArr:this.props.goods.map(v =>v),         //создаем рабочий массив, клонируем массив props
         }
     },
+    
+    statusButtonOk:'',      //текстовая надпись для кнопки ok окна редактирования
 
-    formDefValue: {},
+    formValue:{},           //транспортировочный хэш для передачи параметров товара из функций наружу
+
+    newCode:0,              //переменная для трансляции кода для нового товара
+
+    getCode: function(){                    //функция присваивания уникального номера новому члену массива
+        code=this.state.intGoodsArr.length+1;
+        while(this.state.intGoodsArr.some(v => v.code==code)) code--;
+        return code;
+    },
 
     getNewGoods: function(){            //новый товар
-        this.formDefValue={
-            name:'',
-            desc:'',
-            price:0,
-            qnt:0,
-        }; 
-        this.setState({keyEdit:true,statusButtonOk:'Add'});
+        this.statusButtonOk='Add';
+        this.newCode=this.getCode();
+        this.setState({keyEdit:true});
     },
 
     exitEditGoods: function(){                      //выход меню редактирования
         this.setState({keyEdit:false});
+    },
+
+    saveNewGoods: function(hashArg){                //сохранение нового товара
+        this.state.intGoodsArr.push(hashArg);
+        this.setState({keyEdit:false});
+    },
+
+    saveEditGoods: function(hashArg){                   //сохранение редактирования существующего товара
+        var index;
+        this.state.intGoodsArr.some(function(v,i,a){
+            index=i;
+            return v.code==hashArg.code;
+        });
+        this.state.intGoodsArr[index]=hashArg;
+        this.setState({keyEdit:false});               
     },
 
     editGoodsInList: function(arg){             //вызов редактирования существующего элемента
@@ -43,18 +63,19 @@ var iShop2 = React.createClass({
             index=i;                                    
             return v.code==arg;
         });
-        console.log(this.state.intGoodsArr);
-        this.formDefValue={
+        this.formValue={
+            code:this.state.intGoodsArr[index].code,
             name:this.state.intGoodsArr[index].name,
             desc:this.state.intGoodsArr[index].desc,
             price:this.state.intGoodsArr[index].price,
             qnt:this.state.intGoodsArr[index].qnt
-        };    
-        this.setState({keyEdit:true,statusButtonOk:'Save'});
+        };   
+        this.statusButtonOk='Save'; 
+        this.setState({keyEdit:true});
     },
 
     delGoodsinList: function(arg){                      //вызов удаления существующего элемента
-        if (confirm('Are You sure?'+arg)){
+        if (confirm('Are You sure?')){
             var index;
             this.state.intGoodsArr.some(function(v,i,a){    //ищем элемент удовлетворяющий условию - code вызвавшего поля
                 index=i;                                    //индекс элемента массива с требуемым полем "code" для удаления
@@ -65,7 +86,6 @@ var iShop2 = React.createClass({
         }    
     },
 
-
     render: function(){
         if (this.state.intGoodsArr.length>0){
             this.state.intGoodsArr.sort(function(a,b){                             //храним масиив state в сортированном виде
@@ -73,11 +93,10 @@ var iShop2 = React.createClass({
                 if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
                 return 0;
             });
-            var tempVarFunc={fEdit:this.editGoodsInList,fDel:this.delGoodsinList};
-            var outTableCode=this.state.intGoodsArr.map(function(v,i,a){
-                return React.createElement(goodsItem,
-                    {key:v.code,name:v.name,code:v.code,desc:v.desc,price:v.price,qnt:v.qnt,cbEditClick:tempVarFunc.fEdit,cbDelClick:tempVarFunc.fDel});
-                }
+            var outTableCode=this.state.intGoodsArr.map(v =>
+                React.createElement(goodsItem,
+                    {key:v.code,name:v.name,code:v.code,desc:v.desc,price:v.price,qnt:v.qnt,keyEdit:this.state.keyEdit,
+                        cbEditClick:this.editGoodsInList,cbDelClick:this.delGoodsinList})   
             );
             var tableBlock=React.DOM.table(null,
                         React.DOM.caption(null, "Товары на складе"),
@@ -91,18 +110,38 @@ var iShop2 = React.createClass({
                             outTableCode
                         )
                     );
-            if (!this.state.keyEdit){
+            if (!this.state.keyEdit){               //окна редактирования нет
                 return React.DOM.div(null,
                     tableBlock,
                     React.DOM.div(null,
-                        React.DOM.button({onClick:this.getNewGoods},'New position')
+                        React.DOM.button({className:'newButton',onClick:this.getNewGoods},'New position')
                     )
                 );
             }
-            else return React.DOM.div(null,tableBlock,React.createElement(goodsEdit,
-                {statusButtonOk:this.state.statusButtonOk,defValue:this.formDefValue,cbExitEdit:this.exitEditGoods}));
+            else                                    //окно редактирования есть
+                if (this.statusButtonOk=="Add")                 //режим нового товара
+                    return React.DOM.div(null,tableBlock,
+                                React.createElement(goodsEdit,
+                                    {statusButtonOk:this.statusButtonOk,
+                                    code:this.newCode,
+                                    cbSaveEdit:this.saveNewGoods,
+                                    cbExitEdit:this.exitEditGoods
+                                    })
+                                )
+                else return React.DOM.div(null,tableBlock,
+                                React.createElement(goodsEdit,                  //режим вызова существующего товара
+                                    {statusButtonOk:this.statusButtonOk,
+                                    code:this.formValue.code,
+                                    name:this.formValue.name,
+                                    desc:this.formValue.desc,
+                                    qnt:this.formValue.qnt,
+                                    price:this.formValue.price,
+                                    cbSaveEdit:this.saveEditGoods,
+                                    cbExitEdit:this.exitEditGoods
+                                    })
+                                )
         }                
-        else return React.DOM.div(null,React.DOM.span(null,'Нет товаров'));
+        else return React.DOM.div(null,React.DOM.span(null,'Нет товаров'));             //нет товаров в списке вообще
     },
 });
 

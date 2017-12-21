@@ -1,0 +1,3 @@
+.goodsItem:hover > :not(:last-child){
+    background: #ccc;
+}

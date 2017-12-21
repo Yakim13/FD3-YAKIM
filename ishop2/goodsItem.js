@@ -6,23 +6,24 @@ var goodsItem = React.createClass({
         desc:React.PropTypes.string,
         qnt:React.PropTypes.number.isRequired,
         price:React.PropTypes.number.isRequired,
+        keyEdit:React.PropTypes.bool.isRequired,
         cbEditClick:React.PropTypes.func.isRequired,
         cbDelClick:React.PropTypes.func.isRequired,
     },
 
     handlerButtonDel: function(){
-        this.props.cbDelClick(this.props.code);
+        if (!this.props.keyEdit) this.props.cbDelClick(this.props.code);
     },
 
     handlerButtonEdit: function(){
-        this.props.cbEditClick(this.props.code);
+        if (!this.props.keyEdit) this.props.cbEditClick(this.props.code);
     },
 
     render: function(){
-        return  React.DOM.tr(null,
+        return  React.DOM.tr({className:'goodsItem'},
                             React.DOM.td(null,this.props.name),
                             React.DOM.td(null,this.props.desc),
-                            React.DOM.td(null,this.props.price),
+                            React.DOM.td(null,this.props.price.toFixed(2)),
                             React.DOM.td(null,this.props.qnt),
                             React.DOM.td(null,
                                 React.DOM.button({onClick:this.handlerButtonEdit},'Edit'),
