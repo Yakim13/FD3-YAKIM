@@ -1,0 +1,25 @@
+"use strict";
+
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import iShop3 from './components/iShop3';
+
+
+function initiate(){
+    var product=[
+        {name:'NEOLINE X-COP 4500',code:1,desc:'радар-детектор',price:219.99,qnt:2},
+        {name:'NEOLINE X-COP 5700',code:2,desc:'радар-детектор',price:329.99,qnt:12},
+        {name:'NEOLINE X-COP 7500s',code:3,desc:'радар-детектор',price:259.99,qnt:1},
+        {name:'NEOLINE X-COP 9000',code:4,desc:'гибрид',price:429.99,qnt:24},
+        {name:'NEOLINE X-COP 9700',code:5,desc:'гибрид',price:599.99,qnt:9},
+        {name:'NEOLINE X-COP 9000c',code:6,desc:'гибрид',price:339.99,qnt:3},
+        {name:'NEOLINE X-COP 9100',code:7,desc:'гибрид',price:499.99,qnt:11},
+        {name:'ALLIGATOR A-1S',code:8,desc:'автосигнализация',price:79.99,qnt:52},  
+    ];
+    ReactDOM.render(
+        React.createElement(iShop3,{goods:product}), 
+        document.querySelector('section') 
+    );
+}
+addEventListener('load',initiate);

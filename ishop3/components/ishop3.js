@@ -1,3 +1,10 @@
+import React from 'react';
+
+import './ishop3.css';
+
+import GoodsEdit from './GoodsEdit';
+import GoodsItem from './GoodsItem';
+
 var iShop3 = React.createClass({
 
     propTypes:{
@@ -27,7 +34,7 @@ var iShop3 = React.createClass({
     newCode:0,              //переменная для трансляции кода для нового товара
 
     getCode: function(){                    //функция присваивания уникального номера новому члену массива
-        code=this.state.intGoodsArr.length+1;
+        let code=this.state.intGoodsArr.length+1;
         while(this.state.intGoodsArr.some(v => v.code==code)) code--;
         return code;
     },
@@ -145,3 +152,4 @@ var iShop3 = React.createClass({
     },
 });
 
+export default iShop3;

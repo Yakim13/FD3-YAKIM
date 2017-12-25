@@ -1,3 +1,7 @@
+import React from 'react';
+
+import './GoodsItem.css';
+
 var GoodsItem = React.createClass({
 
     propTypes:{
@@ -32,5 +36,7 @@ var GoodsItem = React.createClass({
         )
     }
 });
+
+export default GoodsItem;
 
   

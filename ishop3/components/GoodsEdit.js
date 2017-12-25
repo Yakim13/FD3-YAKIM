@@ -1,3 +1,7 @@
+import React from 'react';
+
+import './GoodsEdit.css';
+
 var GoodsEdit = React.createClass({
 
     propTypes:{
@@ -73,7 +77,7 @@ var GoodsEdit = React.createClass({
     },
 
     saveFormDate: function(){                                  //отправляем данные родителю, предварительно очищаем хэш флагов валидации
-        for (k in this.validKey) delete this.validKey[k];
+        for (let k in this.validKey) delete this.validKey[k];
         this.props.cbSaveEdit(this.state)
     },
     
@@ -82,7 +86,7 @@ var GoodsEdit = React.createClass({
             if (Object.keys(this.validKey).length==0) this.saveFormDate()
             else{
                 var joinKey=true;
-                for (k in this.validKey) {
+                for (let k in this.validKey) {
                     joinKey=joinKey&&this.validKey[k]; 
                 }
                 if (joinKey) this.saveFormDate()
@@ -91,7 +95,7 @@ var GoodsEdit = React.createClass({
         else{
             if (Object.keys(this.validKey).length==3){
                 var joinKey=true;
-                for (k in this.validKey) joinKey=joinKey&&this.validKey[k]; 
+                for (let k in this.validKey) joinKey=joinKey&&this.validKey[k]; 
                 if (joinKey) this.saveFormDate()                
             }
         }
@@ -124,5 +128,7 @@ var GoodsEdit = React.createClass({
         )
     }
 });
+
+export default GoodsEdit;
 
   
