@@ -2,9 +2,9 @@ import React from 'react';
 
 import './GoodsItem.css';
 
-var GoodsItem = React.createClass({
+class GoodsItem extends React.Component{
 
-    propTypes:{
+    static propTypes = {
         name:React.PropTypes.string.isRequired,
         code:React.PropTypes.number.isRequired,
         desc:React.PropTypes.string,
@@ -13,17 +13,17 @@ var GoodsItem = React.createClass({
         keyEdit:React.PropTypes.bool.isRequired,
         cbEditClick:React.PropTypes.func.isRequired,
         cbDelClick:React.PropTypes.func.isRequired,
-    },
+    }
 
-    handlerButtonDel: function(){
+    handlerButtonDel(){
         if (!this.props.keyEdit) this.props.cbDelClick(this.props.code);
-    },
+    }
 
-    handlerButtonEdit: function(){
+    handlerButtonEdit(){
         if (!this.props.keyEdit) this.props.cbEditClick(this.props.code);
-    },
+    }
 
-    render: function(){
+    render(){
         return  React.DOM.tr({className:'goodsItem'},
                             React.DOM.td(null,this.props.name),
                             React.DOM.td(null,this.props.desc),
@@ -35,7 +35,7 @@ var GoodsItem = React.createClass({
                             )
         )
     }
-});
+};
 
 export default GoodsItem;
 

@@ -70,6 +70,4 @@ label{
 }
 input, textarea{
     width: 50%;
-}.goodsItem:hover > :not(:last-child){
-    background: #ccc;
 }
