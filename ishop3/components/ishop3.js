@@ -5,9 +5,9 @@ import './ishop3.css';
 import GoodsEdit from './GoodsEdit';
 import GoodsItem from './GoodsItem';
 
-var iShop3 = React.createClass({
+class iShop3 extends React.Component{
 
-    propTypes:{
+    static propTypes = {
         goods:React.PropTypes.arrayOf(
             React.PropTypes.shape({
                 name:React.PropTypes.string.isRequired,
@@ -17,56 +17,42 @@ var iShop3 = React.createClass({
                 qnt:React.PropTypes.number.isRequired,
             })
         ),
-    },
+    }
 
-    getInitialState: function(){
-        return{
-            keyEdit: false,                                 //ключ для появления поля редактирования параметров
-            triggerState:false,                             //триггер запуска render                        
-            intGoodsArr:this.props.goods.map(v =>v),         //создаем рабочий массив, клонируем массив props
-        }
-    },
+    state = {
+        keyEdit: false,                                 //ключ для появления поля редактирования параметров
+        triggerState:false,                             //триггер запуска render                        
+        intGoodsArr:this.props.goods.map(v =>v),         //создаем рабочий массив, клонируем массив props
+    }
 
-    /*
-    constructor(props){
-        super(props);
-        this.state = {
-            keyEdit:false,                                 //ключ для появления поля редактирования параметров
-            triggerState:false,                             //триггер запуска render                        
-            intGoodsArr:this.props.goods.map(v =>v),         //создаем рабочий массив, клонируем массив props   
-        };
-        this.statusButtonOk='';      //текстовая надпись для кнопки ok окна редактирования
-        this.formValue={};           //транспортировочный хэш для передачи параметров товара из функций наружу
-        this.newCode=0;              //переменная для трансляции кода для нового товара
-      }
-    */
+    statusButtonOk=''      //текстовая надпись для кнопки ok окна редактирования
 
-    statusButtonOk:'',      //текстовая надпись для кнопки ok окна редактирования
-    formValue:{},           //транспортировочный хэш для передачи параметров товара из функций наружу
-    newCode:0,              //переменная для трансляции кода для нового товара
+    formValue={}           //транспортировочный хэш для передачи параметров товара из функций наружу
 
-    getCode:function(){                    //функция присваивания уникального номера новому члену массива
+    newCode=0              //переменная для трансляции кода для нового товара
+
+    getCode=()=>{                    //функция присваивания уникального номера новому члену массива
         let code=this.state.intGoodsArr.length+1;
         while(this.state.intGoodsArr.some(v => v.code==code)) code--;
         return code;
-    },
+    }
 
-    getNewGoods:function(){            //новый товар
+    getNewGoods=()=>{            //новый товар
         this.statusButtonOk='Add';
         this.newCode=this.getCode();
         this.setState({keyEdit:true});
-    },
+    }
 
-    exitEditGoods:function(){                      //выход меню редактирования
+    exitEditGoods=()=>{                      //выход меню редактирования
         this.setState({keyEdit:false});
-    },
+    }
 
-    saveNewGoods:function(hashArg){                //сохранение нового товара
+    saveNewGoods=(hashArg)=>{                //сохранение нового товара
         this.state.intGoodsArr.push(hashArg);
         this.setState({keyEdit:false});
-    },
+    }
 
-    saveEditGoods:function(hashArg){                   //сохранение редактирования существующего товара
+    saveEditGoods=(hashArg)=>{                   //сохранение редактирования существующего товара
         var index;
         this.state.intGoodsArr.some(function(v,i,a){
             index=i;
@@ -74,9 +60,9 @@ var iShop3 = React.createClass({
         });
         this.state.intGoodsArr[index]=hashArg;
         this.setState({keyEdit:false});               
-    },
+    }
 
-    editGoodsInList:function(arg){             //вызов редактирования существующего элемента
+    editGoodsInList=(arg)=>{             //вызов редактирования существующего элемента
         var index;
         this.state.intGoodsArr.some(function(v,i,a){    //ищем элемент удовлетворяющий условию - code вызвавшего поля
             index=i;                                    
@@ -91,9 +77,9 @@ var iShop3 = React.createClass({
         };   
         this.statusButtonOk='Save'; 
         this.setState({keyEdit:true});
-    },
+    }
 
-    delGoodsinList:function(arg){                      //вызов удаления существующего элемента
+    delGoodsinList=(arg)=>{                      //вызов удаления существующего элемента
         if (confirm('Are You sure?')){
             var index;
             this.state.intGoodsArr.some(function(v,i,a){    //ищем элемент удовлетворяющий условию - code вызвавшего поля
@@ -103,9 +89,9 @@ var iShop3 = React.createClass({
             this.state.intGoodsArr.splice(index,1);                     //удаляем элемент
             this.setState({triggerState:!this.state.triggerState});     //обновляем страницу
         }    
-    },
+    }
 
-    render:function(){
+    render(){
         if (this.state.intGoodsArr.length>0){
             this.state.intGoodsArr.sort(function(a,b){                             //храним масиив state в сортированном виде
                 if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;         //регистронезависимая сортировка для красивого вывода
@@ -162,6 +148,6 @@ var iShop3 = React.createClass({
         }                
         else return React.DOM.div(null,React.DOM.span(null,'Нет товаров'));             //нет товаров в списке вообще
     }
-});
+};
 
 export default iShop3;

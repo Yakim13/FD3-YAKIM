@@ -22094,6 +22094,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(24);
 
 var _react2 = _interopRequireDefault(_react);
@@ -22110,155 +22112,150 @@ var _GoodsItem2 = _interopRequireDefault(_GoodsItem);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var iShop3 = _react2.default.createClass({
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    propTypes: {
-        goods: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
-            name: _react2.default.PropTypes.string.isRequired,
-            code: _react2.default.PropTypes.number.isRequired,
-            desc: _react2.default.PropTypes.string,
-            price: _react2.default.PropTypes.number.isRequired,
-            qnt: _react2.default.PropTypes.number.isRequired
-        }))
-    },
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    getInitialState: function getInitialState() {
-        return {
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var iShop3 = function (_React$Component) {
+    _inherits(iShop3, _React$Component);
+
+    function iShop3() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, iShop3);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = iShop3.__proto__ || Object.getPrototypeOf(iShop3)).call.apply(_ref, [this].concat(args))), _this), _this.state = {
             keyEdit: false, //ключ для появления поля редактирования параметров
             triggerState: false, //триггер запуска render                        
-            intGoodsArr: this.props.goods.map(function (v) {
+            intGoodsArr: _this.props.goods.map(function (v) {
                 return v;
             }) //создаем рабочий массив, клонируем массив props
-        };
-    },
-
-    /*
-    constructor(props){
-        super(props);
-        this.state = {
-            keyEdit:false,                                 //ключ для появления поля редактирования параметров
-            triggerState:false,                             //триггер запуска render                        
-            intGoodsArr:this.props.goods.map(v =>v),         //создаем рабочий массив, клонируем массив props   
-        };
-        this.statusButtonOk='';      //текстовая надпись для кнопки ok окна редактирования
-        this.formValue={};           //транспортировочный хэш для передачи параметров товара из функций наружу
-        this.newCode=0;              //переменная для трансляции кода для нового товара
-      }
-    */
-
-    statusButtonOk: '', //текстовая надпись для кнопки ok окна редактирования
-    formValue: {}, //транспортировочный хэш для передачи параметров товара из функций наружу
-    newCode: 0, //переменная для трансляции кода для нового товара
-
-    getCode: function getCode() {
-        //функция присваивания уникального номера новому члену массива
-        var code = this.state.intGoodsArr.length + 1;
-        while (this.state.intGoodsArr.some(function (v) {
-            return v.code == code;
-        })) {
-            code--;
-        }return code;
-    },
-
-    getNewGoods: function getNewGoods() {
-        //новый товар
-        this.statusButtonOk = 'Add';
-        this.newCode = this.getCode();
-        this.setState({ keyEdit: true });
-    },
-
-    exitEditGoods: function exitEditGoods() {
-        //выход меню редактирования
-        this.setState({ keyEdit: false });
-    },
-
-    saveNewGoods: function saveNewGoods(hashArg) {
-        //сохранение нового товара
-        this.state.intGoodsArr.push(hashArg);
-        this.setState({ keyEdit: false });
-    },
-
-    saveEditGoods: function saveEditGoods(hashArg) {
-        //сохранение редактирования существующего товара
-        var index;
-        this.state.intGoodsArr.some(function (v, i, a) {
-            index = i;
-            return v.code == hashArg.code;
-        });
-        this.state.intGoodsArr[index] = hashArg;
-        this.setState({ keyEdit: false });
-    },
-
-    editGoodsInList: function editGoodsInList(arg) {
-        //вызов редактирования существующего элемента
-        var index;
-        this.state.intGoodsArr.some(function (v, i, a) {
-            //ищем элемент удовлетворяющий условию - code вызвавшего поля
-            index = i;
-            return v.code == arg;
-        });
-        this.formValue = {
-            code: this.state.intGoodsArr[index].code,
-            name: this.state.intGoodsArr[index].name,
-            desc: this.state.intGoodsArr[index].desc,
-            price: this.state.intGoodsArr[index].price,
-            qnt: this.state.intGoodsArr[index].qnt
-        };
-        this.statusButtonOk = 'Save';
-        this.setState({ keyEdit: true });
-    },
-
-    delGoodsinList: function delGoodsinList(arg) {
-        //вызов удаления существующего элемента
-        if (confirm('Are You sure?')) {
+        }, _this.statusButtonOk = '', _this.formValue = {}, _this.newCode = 0, _this.getCode = function () {
+            //функция присваивания уникального номера новому члену массива
+            var code = _this.state.intGoodsArr.length + 1;
+            while (_this.state.intGoodsArr.some(function (v) {
+                return v.code == code;
+            })) {
+                code--;
+            }return code;
+        }, _this.getNewGoods = function () {
+            //новый товар
+            _this.statusButtonOk = 'Add';
+            _this.newCode = _this.getCode();
+            _this.setState({ keyEdit: true });
+        }, _this.exitEditGoods = function () {
+            //выход меню редактирования
+            _this.setState({ keyEdit: false });
+        }, _this.saveNewGoods = function (hashArg) {
+            //сохранение нового товара
+            _this.state.intGoodsArr.push(hashArg);
+            _this.setState({ keyEdit: false });
+        }, _this.saveEditGoods = function (hashArg) {
+            //сохранение редактирования существующего товара
             var index;
-            this.state.intGoodsArr.some(function (v, i, a) {
+            _this.state.intGoodsArr.some(function (v, i, a) {
+                index = i;
+                return v.code == hashArg.code;
+            });
+            _this.state.intGoodsArr[index] = hashArg;
+            _this.setState({ keyEdit: false });
+        }, _this.editGoodsInList = function (arg) {
+            //вызов редактирования существующего элемента
+            var index;
+            _this.state.intGoodsArr.some(function (v, i, a) {
                 //ищем элемент удовлетворяющий условию - code вызвавшего поля
-                index = i; //индекс элемента массива с требуемым полем "code" для удаления
+                index = i;
                 return v.code == arg;
             });
-            this.state.intGoodsArr.splice(index, 1); //удаляем элемент
-            this.setState({ triggerState: !this.state.triggerState }); //обновляем страницу
-        }
-    },
+            _this.formValue = {
+                code: _this.state.intGoodsArr[index].code,
+                name: _this.state.intGoodsArr[index].name,
+                desc: _this.state.intGoodsArr[index].desc,
+                price: _this.state.intGoodsArr[index].price,
+                qnt: _this.state.intGoodsArr[index].qnt
+            };
+            _this.statusButtonOk = 'Save';
+            _this.setState({ keyEdit: true });
+        }, _this.delGoodsinList = function (arg) {
+            //вызов удаления существующего элемента
+            if (confirm('Are You sure?')) {
+                var index;
+                _this.state.intGoodsArr.some(function (v, i, a) {
+                    //ищем элемент удовлетворяющий условию - code вызвавшего поля
+                    index = i; //индекс элемента массива с требуемым полем "code" для удаления
+                    return v.code == arg;
+                });
+                _this.state.intGoodsArr.splice(index, 1); //удаляем элемент
+                _this.setState({ triggerState: !_this.state.triggerState }); //обновляем страницу
+            }
+        }, _temp), _possibleConstructorReturn(_this, _ret);
+    } //текстовая надпись для кнопки ok окна редактирования
 
-    render: function render() {
-        var _this = this;
+    //транспортировочный хэш для передачи параметров товара из функций наружу
 
-        if (this.state.intGoodsArr.length > 0) {
-            this.state.intGoodsArr.sort(function (a, b) {
-                //храним масиив state в сортированном виде
-                if (a.name.toLowerCase() > b.name.toLowerCase()) return 1; //регистронезависимая сортировка для красивого вывода
-                if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
-                return 0;
-            });
-            var outTableCode = this.state.intGoodsArr.map(function (v) {
-                return _react2.default.createElement(_GoodsItem2.default, { key: v.code, name: v.name, code: v.code, desc: v.desc, price: v.price, qnt: v.qnt, keyEdit: _this.state.keyEdit,
-                    cbEditClick: _this.editGoodsInList, cbDelClick: _this.delGoodsinList });
-            });
-            var tableBlock = _react2.default.DOM.table(null, _react2.default.DOM.caption(null, "Товары на складе"), _react2.default.DOM.tbody(null, _react2.default.DOM.tr(null, _react2.default.DOM.th(null, "Товар"), _react2.default.DOM.th(null, "Описание"), _react2.default.DOM.th(null, "Цена"), _react2.default.DOM.th(null, "Количество"), _react2.default.DOM.td(null)), outTableCode));
-            if (!this.state.keyEdit) {
-                //окна редактирования нет
-                return _react2.default.DOM.div(null, tableBlock, _react2.default.DOM.div(null, _react2.default.DOM.button({ className: 'newButton', onClick: this.getNewGoods }, 'New position')));
-            } else //окно редактирования есть
-                if (this.statusButtonOk == "Add") //режим нового товара
-                    return _react2.default.DOM.div(null, tableBlock, _react2.default.createElement(_GoodsEdit2.default, { statusButtonOk: this.statusButtonOk,
-                        code: this.newCode,
-                        cbSaveEdit: this.saveNewGoods,
+    //переменная для трансляции кода для нового товара
+
+    _createClass(iShop3, [{
+        key: 'render',
+        value: function render() {
+            var _this2 = this;
+
+            if (this.state.intGoodsArr.length > 0) {
+                this.state.intGoodsArr.sort(function (a, b) {
+                    //храним масиив state в сортированном виде
+                    if (a.name.toLowerCase() > b.name.toLowerCase()) return 1; //регистронезависимая сортировка для красивого вывода
+                    if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
+                    return 0;
+                });
+                var outTableCode = this.state.intGoodsArr.map(function (v) {
+                    return _react2.default.createElement(_GoodsItem2.default, { key: v.code, name: v.name, code: v.code, desc: v.desc, price: v.price, qnt: v.qnt, keyEdit: _this2.state.keyEdit,
+                        cbEditClick: _this2.editGoodsInList, cbDelClick: _this2.delGoodsinList });
+                });
+                var tableBlock = _react2.default.DOM.table(null, _react2.default.DOM.caption(null, "Товары на складе"), _react2.default.DOM.tbody(null, _react2.default.DOM.tr(null, _react2.default.DOM.th(null, "Товар"), _react2.default.DOM.th(null, "Описание"), _react2.default.DOM.th(null, "Цена"), _react2.default.DOM.th(null, "Количество"), _react2.default.DOM.td(null)), outTableCode));
+                if (!this.state.keyEdit) {
+                    //окна редактирования нет
+                    return _react2.default.DOM.div(null, tableBlock, _react2.default.DOM.div(null, _react2.default.DOM.button({ className: 'newButton', onClick: this.getNewGoods }, 'New position')));
+                } else //окно редактирования есть
+                    if (this.statusButtonOk == "Add") //режим нового товара
+                        return _react2.default.DOM.div(null, tableBlock, _react2.default.createElement(_GoodsEdit2.default, { statusButtonOk: this.statusButtonOk,
+                            code: this.newCode,
+                            cbSaveEdit: this.saveNewGoods,
+                            cbExitEdit: this.exitEditGoods
+                        }));else return _react2.default.DOM.div(null, tableBlock, _react2.default.createElement(_GoodsEdit2.default, //режим вызова существующего товара
+                    { statusButtonOk: this.statusButtonOk,
+                        code: this.formValue.code,
+                        name: this.formValue.name,
+                        desc: this.formValue.desc,
+                        qnt: this.formValue.qnt,
+                        price: this.formValue.price,
+                        cbSaveEdit: this.saveEditGoods,
                         cbExitEdit: this.exitEditGoods
-                    }));else return _react2.default.DOM.div(null, tableBlock, _react2.default.createElement(_GoodsEdit2.default, //режим вызова существующего товара
-                { statusButtonOk: this.statusButtonOk,
-                    code: this.formValue.code,
-                    name: this.formValue.name,
-                    desc: this.formValue.desc,
-                    qnt: this.formValue.qnt,
-                    price: this.formValue.price,
-                    cbSaveEdit: this.saveEditGoods,
-                    cbExitEdit: this.exitEditGoods
-                }));
-        } else return _react2.default.DOM.div(null, _react2.default.DOM.span(null, 'Нет товаров')); //нет товаров в списке вообще
-    }
-});
+                    }));
+            } else return _react2.default.DOM.div(null, _react2.default.DOM.span(null, 'Нет товаров')); //нет товаров в списке вообще
+        }
+    }]);
+
+    return iShop3;
+}(_react2.default.Component);
+
+iShop3.propTypes = {
+    goods: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
+        name: _react2.default.PropTypes.string.isRequired,
+        code: _react2.default.PropTypes.number.isRequired,
+        desc: _react2.default.PropTypes.string,
+        price: _react2.default.PropTypes.number.isRequired,
+        qnt: _react2.default.PropTypes.number.isRequired
+    }))
+};
+;
 
 exports.default = iShop3;
 
