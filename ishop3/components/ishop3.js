@@ -26,35 +26,47 @@ var iShop3 = React.createClass({
             intGoodsArr:this.props.goods.map(v =>v),         //создаем рабочий массив, клонируем массив props
         }
     },
-    
+
+    /*
+    constructor(props){
+        super(props);
+        this.state = {
+            keyEdit:false,                                 //ключ для появления поля редактирования параметров
+            triggerState:false,                             //триггер запуска render                        
+            intGoodsArr:this.props.goods.map(v =>v),         //создаем рабочий массив, клонируем массив props   
+        };
+        this.statusButtonOk='';      //текстовая надпись для кнопки ok окна редактирования
+        this.formValue={};           //транспортировочный хэш для передачи параметров товара из функций наружу
+        this.newCode=0;              //переменная для трансляции кода для нового товара
+      }
+    */
+
     statusButtonOk:'',      //текстовая надпись для кнопки ok окна редактирования
-
     formValue:{},           //транспортировочный хэш для передачи параметров товара из функций наружу
-
     newCode:0,              //переменная для трансляции кода для нового товара
 
-    getCode: function(){                    //функция присваивания уникального номера новому члену массива
+    getCode:function(){                    //функция присваивания уникального номера новому члену массива
         let code=this.state.intGoodsArr.length+1;
         while(this.state.intGoodsArr.some(v => v.code==code)) code--;
         return code;
     },
 
-    getNewGoods: function(){            //новый товар
+    getNewGoods:function(){            //новый товар
         this.statusButtonOk='Add';
         this.newCode=this.getCode();
         this.setState({keyEdit:true});
     },
 
-    exitEditGoods: function(){                      //выход меню редактирования
+    exitEditGoods:function(){                      //выход меню редактирования
         this.setState({keyEdit:false});
     },
 
-    saveNewGoods: function(hashArg){                //сохранение нового товара
+    saveNewGoods:function(hashArg){                //сохранение нового товара
         this.state.intGoodsArr.push(hashArg);
         this.setState({keyEdit:false});
     },
 
-    saveEditGoods: function(hashArg){                   //сохранение редактирования существующего товара
+    saveEditGoods:function(hashArg){                   //сохранение редактирования существующего товара
         var index;
         this.state.intGoodsArr.some(function(v,i,a){
             index=i;
@@ -64,7 +76,7 @@ var iShop3 = React.createClass({
         this.setState({keyEdit:false});               
     },
 
-    editGoodsInList: function(arg){             //вызов редактирования существующего элемента
+    editGoodsInList:function(arg){             //вызов редактирования существующего элемента
         var index;
         this.state.intGoodsArr.some(function(v,i,a){    //ищем элемент удовлетворяющий условию - code вызвавшего поля
             index=i;                                    
@@ -81,7 +93,7 @@ var iShop3 = React.createClass({
         this.setState({keyEdit:true});
     },
 
-    delGoodsinList: function(arg){                      //вызов удаления существующего элемента
+    delGoodsinList:function(arg){                      //вызов удаления существующего элемента
         if (confirm('Are You sure?')){
             var index;
             this.state.intGoodsArr.some(function(v,i,a){    //ищем элемент удовлетворяющий условию - code вызвавшего поля
@@ -93,7 +105,7 @@ var iShop3 = React.createClass({
         }    
     },
 
-    render: function(){
+    render:function(){
         if (this.state.intGoodsArr.length>0){
             this.state.intGoodsArr.sort(function(a,b){                             //храним масиив state в сортированном виде
                 if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;         //регистронезависимая сортировка для красивого вывода
@@ -149,7 +161,7 @@ var iShop3 = React.createClass({
                                 )
         }                
         else return React.DOM.div(null,React.DOM.span(null,'Нет товаров'));             //нет товаров в списке вообще
-    },
+    }
 });
 
 export default iShop3;

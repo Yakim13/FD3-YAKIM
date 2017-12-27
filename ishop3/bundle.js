@@ -22132,10 +22132,22 @@ var iShop3 = _react2.default.createClass({
         };
     },
 
+    /*
+    constructor(props){
+        super(props);
+        this.state = {
+            keyEdit:false,                                 //ключ для появления поля редактирования параметров
+            triggerState:false,                             //триггер запуска render                        
+            intGoodsArr:this.props.goods.map(v =>v),         //создаем рабочий массив, клонируем массив props   
+        };
+        this.statusButtonOk='';      //текстовая надпись для кнопки ok окна редактирования
+        this.formValue={};           //транспортировочный хэш для передачи параметров товара из функций наружу
+        this.newCode=0;              //переменная для трансляции кода для нового товара
+      }
+    */
+
     statusButtonOk: '', //текстовая надпись для кнопки ok окна редактирования
-
     formValue: {}, //транспортировочный хэш для передачи параметров товара из функций наружу
-
     newCode: 0, //переменная для трансляции кода для нового товара
 
     getCode: function getCode() {
@@ -22267,6 +22279,8 @@ Object.defineProperty(exports, "__esModule", {
     value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _react = __webpack_require__(24);
 
 var _react2 = _interopRequireDefault(_react);
@@ -22275,113 +22289,140 @@ __webpack_require__(187);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var GoodsEdit = _react2.default.createClass({
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-    propTypes: {
-        code: _react2.default.PropTypes.number.isRequired,
-        name: _react2.default.PropTypes.string,
-        desc: _react2.default.PropTypes.string,
-        price: _react2.default.PropTypes.number,
-        qnt: _react2.default.PropTypes.number,
-        statusButtonOk: _react2.default.PropTypes.string.isRequired,
-        cbExitEdit: _react2.default.PropTypes.func.isRequired,
-        cbSaveEdit: _react2.default.PropTypes.func.isRequired
-    },
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-    getDefaultProps: function getDefaultProps() {
-        return {
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var GoodsEdit = function (_React$Component) {
+    _inherits(GoodsEdit, _React$Component);
+
+    function GoodsEdit() {
+        var _ref;
+
+        var _temp, _this, _ret;
+
+        _classCallCheck(this, GoodsEdit);
+
+        for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+            args[_key] = arguments[_key];
+        }
+
+        return _ret = (_temp = (_this = _possibleConstructorReturn(this, (_ref = GoodsEdit.__proto__ || Object.getPrototypeOf(GoodsEdit)).call.apply(_ref, [this].concat(args))), _this), _this.defaultProps = {
             name: '',
             desc: '',
             price: 0,
             qnt: 0
-        };
-    },
+        }, _this.state = {
+            code: _this.props.code,
+            name: _this.props.name,
+            desc: _this.props.desc,
+            price: _this.props.price == 0 ? '' : _this.props.price,
+            qnt: _this.props.qnt == 0 ? '' : _this.props.qnt
+        }, _this.validKey = {}, _temp), _possibleConstructorReturn(_this, _ret);
+    }
 
-    getInitialState: function getInitialState() {
-        return {
-            code: this.props.code,
-            name: this.props.name,
-            desc: this.props.desc,
-            price: this.props.price == 0 ? '' : this.props.price,
-            qnt: this.props.qnt == 0 ? '' : this.props.qnt
-        };
-    },
+    _createClass(GoodsEdit, [{
+        key: 'nameHandler',
+        //хэш ключей валидации
 
-    validKey: {}, //хэш ключей валидации
-
-    nameHandler: function nameHandler(EO) {
-        //валидация name с корректным приведением значений
-        if (EO.target.value == '') {
-            //проверка на непустое поле name
-            EO.target.style.background = '#FCC';
-            this.validKey.name = false;
-        } else {
-            EO.target.style.background = '#FFF';
-            this.validKey.name = true;
-        };
-        this.setState({ name: EO.target.value.trim().toUpperCase() });
-    },
-
-    priceHandler: function priceHandler(EO) {
-        //валидация price с корректным приведением значений
-        if (/[^0-9.]/.test(EO.target.value || EO.target.value == '')) {
-            EO.target.style.background = '#FCC';
-            this.validKey.price = false;
-        } else {
-            EO.target.style.background = '#FFF';
-            this.validKey.price = true;
-        };
-        this.setState({ price: Math.round(Number(EO.target.value) * 100) / 100 });
-    },
-
-    qntHandler: function qntHandler(EO) {
-        //валидация qnt с корректным приведением значений
-        if (/[^0-9]/.test(EO.target.value || EO.target.value == '')) {
-            EO.target.style.background = '#FCC';
-            this.validKey.qnt = false;
-        } else {
-            EO.target.style.background = '#FFF';
-            this.validKey.qnt = true;
-        };
-        this.setState({ qnt: parseInt(EO.target.value) });
-    },
-
-    descHandler: function descHandler(EO) {
-        //desc - корректное приведение значений
-        this.setState({ desc: EO.target.value.trim().toLowerCase() });
-    },
-
-    saveFormDate: function saveFormDate() {
-        //отправляем данные родителю, предварительно очищаем хэш флагов валидации
-        for (var k in this.validKey) {
-            delete this.validKey[k];
-        }this.props.cbSaveEdit(this.state);
-    },
-
-    checkValidDate: function checkValidDate() {
-        //используем для проверки хэш флагов, проверяем их наличие и состояние
-        if (this.props.statusButtonOk == 'Save') {
-            if (Object.keys(this.validKey).length == 0) this.saveFormDate();else {
-                var joinKey = true;
-                for (var k in this.validKey) {
-                    joinKey = joinKey && this.validKey[k];
+        value: function nameHandler(EO) {
+            //валидация name с корректным приведением значений
+            if (EO.target.value == '') {
+                //проверка на непустое поле name
+                EO.target.style.background = '#FCC';
+                this.validKey.name = false;
+            } else {
+                EO.target.style.background = '#FFF';
+                this.validKey.name = true;
+            };
+            this.setState({ name: EO.target.value.trim().toUpperCase() });
+        }
+    }, {
+        key: 'priceHandler',
+        value: function priceHandler(EO) {
+            //валидация price с корректным приведением значений
+            if (/[^0-9.]/.test(EO.target.value || EO.target.value == '')) {
+                EO.target.style.background = '#FCC';
+                this.validKey.price = false;
+            } else {
+                EO.target.style.background = '#FFF';
+                this.validKey.price = true;
+            };
+            this.setState({ price: Math.round(Number(EO.target.value) * 100) / 100 });
+        }
+    }, {
+        key: 'qntHandler',
+        value: function qntHandler(EO) {
+            //валидация qnt с корректным приведением значений
+            if (/[^0-9]/.test(EO.target.value || EO.target.value == '')) {
+                EO.target.style.background = '#FCC';
+                this.validKey.qnt = false;
+            } else {
+                EO.target.style.background = '#FFF';
+                this.validKey.qnt = true;
+            };
+            this.setState({ qnt: parseInt(EO.target.value) });
+        }
+    }, {
+        key: 'descHandler',
+        value: function descHandler(EO) {
+            //desc - корректное приведение значений
+            this.setState({ desc: EO.target.value.trim().toLowerCase() });
+        }
+    }, {
+        key: 'saveFormDate',
+        value: function saveFormDate() {
+            //отправляем данные родителю, предварительно очищаем хэш флагов валидации
+            for (var k in this.validKey) {
+                delete this.validKey[k];
+            }this.props.cbSaveEdit(this.state);
+        }
+    }, {
+        key: 'checkValidDate',
+        value: function checkValidDate() {
+            //используем для проверки хэш флагов, проверяем их наличие и состояние
+            if (this.props.statusButtonOk == 'Save') {
+                if (Object.keys(this.validKey).length == 0) this.saveFormDate();else {
+                    var joinKey = true;
+                    for (var k in this.validKey) {
+                        joinKey = joinKey && this.validKey[k];
+                    }
+                    if (joinKey) this.saveFormDate();
                 }
-                if (joinKey) this.saveFormDate();
-            }
-        } else {
-            if (Object.keys(this.validKey).length == 3) {
-                var joinKey = true;
-                for (var _k in this.validKey) {
-                    joinKey = joinKey && this.validKey[_k];
-                }if (joinKey) this.saveFormDate();
+            } else {
+                if (Object.keys(this.validKey).length == 3) {
+                    var joinKey = true;
+                    for (var _k in this.validKey) {
+                        joinKey = joinKey && this.validKey[_k];
+                    }if (joinKey) this.saveFormDate();
+                }
             }
         }
-    },
+    }, {
+        key: 'render',
+        value: function render() {
+            var _context;
 
-    render: function render() {
-        return _react2.default.DOM.div({ className: 'hideBlock' }, _react2.default.DOM.div({ className: 'goodsEdit' }, _react2.default.DOM.div({ className: 'goodsInput' }, _react2.default.DOM.label({ htmlFor: 'name' }, 'Название товара:'), _react2.default.DOM.input({ type: 'text', id: 'name', defaultValue: this.state.name, onChange: this.nameHandler })), _react2.default.DOM.div({ className: 'goodsInput' }, _react2.default.DOM.label({ htmlFor: 'price' }, 'Цена:'), _react2.default.DOM.input({ type: 'text', id: 'price', defaultValue: this.state.price, onChange: this.priceHandler })), _react2.default.DOM.div({ className: 'goodsInput' }, _react2.default.DOM.label({ htmlFor: 'qnt' }, 'Количество:'), _react2.default.DOM.input({ type: 'text', id: 'qnt', defaultValue: this.state.qnt, onChange: this.qntHandler })), _react2.default.DOM.div({ className: 'goodsInput' }, _react2.default.DOM.label({ htmlFor: 'desc' }, 'Описание:'), _react2.default.DOM.textarea({ id: 'desc', defaultValue: this.state.desc, onChange: this.descHandler })), _react2.default.DOM.div(null, _react2.default.DOM.button({ onClick: this.checkValidDate }, this.props.statusButtonOk), _react2.default.DOM.button({ onClick: this.props.cbExitEdit }, 'Exit'))));
-    }
-});
+            return _react2.default.DOM.div({ className: 'hideBlock' }, _react2.default.DOM.div({ className: 'goodsEdit' }, _react2.default.DOM.div({ className: 'goodsInput' }, _react2.default.DOM.label({ htmlFor: 'name' }, 'Название товара:'), _react2.default.DOM.input({ type: 'text', id: 'name', defaultValue: this.state.name, onChange: this.nameHandler.bind(this) })), _react2.default.DOM.div({ className: 'goodsInput' }, _react2.default.DOM.label({ htmlFor: 'price' }, 'Цена:'), _react2.default.DOM.input({ type: 'text', id: 'price', defaultValue: this.state.price, onChange: this.priceHandler.bind(this) })), _react2.default.DOM.div({ className: 'goodsInput' }, _react2.default.DOM.label({ htmlFor: 'qnt' }, 'Количество:'), _react2.default.DOM.input({ type: 'text', id: 'qnt', defaultValue: this.state.qnt, onChange: this.qntHandler.bind(this) })), _react2.default.DOM.div({ className: 'goodsInput' }, _react2.default.DOM.label({ htmlFor: 'desc' }, 'Описание:'), _react2.default.DOM.textarea({ id: 'desc', defaultValue: this.state.desc, onChange: this.descHandler.bind(this) })), _react2.default.DOM.div(null, _react2.default.DOM.button({ onClick: this.checkValidDate.bind(this) }, this.props.statusButtonOk), _react2.default.DOM.button({ onClick: (_context = this.props).cbExitEdit.bind(_context) }, 'Exit'))));
+        }
+    }]);
+
+    return GoodsEdit;
+}(_react2.default.Component);
+
+GoodsEdit.propTypes = {
+    code: _react2.default.PropTypes.number.isRequired,
+    name: _react2.default.PropTypes.string,
+    desc: _react2.default.PropTypes.string,
+    price: _react2.default.PropTypes.number,
+    qnt: _react2.default.PropTypes.number,
+    statusButtonOk: _react2.default.PropTypes.string.isRequired,
+    cbExitEdit: _react2.default.PropTypes.func.isRequired,
+    cbSaveEdit: _react2.default.PropTypes.func.isRequired
+};
+;
 
 exports.default = GoodsEdit;
 
@@ -22421,10 +22462,14 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var GoodsItem = function (_React$Component) {
     _inherits(GoodsItem, _React$Component);
 
-    function GoodsItem() {
+    function GoodsItem(props) {
         _classCallCheck(this, GoodsItem);
 
-        return _possibleConstructorReturn(this, (GoodsItem.__proto__ || Object.getPrototypeOf(GoodsItem)).apply(this, arguments));
+        var _this = _possibleConstructorReturn(this, (GoodsItem.__proto__ || Object.getPrototypeOf(GoodsItem)).call(this, props));
+
+        _this.handlerButtonDel = _this.handlerButtonDel.bind(_this);
+        _this.handlerButtonEdit = _this.handlerButtonEdit.bind(_this);
+        return _this;
     }
 
     _createClass(GoodsItem, [{

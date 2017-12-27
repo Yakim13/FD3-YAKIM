@@ -4,7 +4,7 @@ import './GoodsItem.css';
 
 class GoodsItem extends React.Component{
 
-    static propTypes = {
+    static propTypes={
         name:React.PropTypes.string.isRequired,
         code:React.PropTypes.number.isRequired,
         desc:React.PropTypes.string,
@@ -14,6 +14,12 @@ class GoodsItem extends React.Component{
         cbEditClick:React.PropTypes.func.isRequired,
         cbDelClick:React.PropTypes.func.isRequired,
     }
+
+    constructor(props){
+        super(props);
+        this.handlerButtonDel=this.handlerButtonDel.bind(this);
+        this.handlerButtonEdit=this.handlerButtonEdit.bind(this);
+     }
 
     handlerButtonDel(){
         if (!this.props.keyEdit) this.props.cbDelClick(this.props.code);

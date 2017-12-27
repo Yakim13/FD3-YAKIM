@@ -2,9 +2,9 @@ import React from 'react';
 
 import './GoodsEdit.css';
 
-var GoodsEdit = React.createClass({
+class GoodsEdit extends React.Component{
 
-    propTypes:{
+    static propTypes = {
         code:React.PropTypes.number.isRequired,
         name:React.PropTypes.string,
         desc:React.PropTypes.string,
@@ -13,30 +13,26 @@ var GoodsEdit = React.createClass({
         statusButtonOk:React.PropTypes.string.isRequired,
         cbExitEdit:React.PropTypes.func.isRequired,
         cbSaveEdit:React.PropTypes.func.isRequired,
-    },
+    }
 
-    getDefaultProps: function(){
-        return{
-            name:'',
-            desc:'',
-            price:0,
-            qnt:0,
-        }
-    },
+    defaultProps ={
+        name:'',
+        desc:'',
+        price:0,
+        qnt:0,
+    }
 
-    getInitialState: function(){
-        return{
-            code:this.props.code,
-            name:this.props.name,
-            desc:this.props.desc,
-            price:(this.props.price==0)?'':this.props.price,
-            qnt:(this.props.qnt==0)?'':this.props.qnt,
-        }
-    },
+    state = {
+        code:this.props.code,
+        name:this.props.name,
+        desc:this.props.desc,
+        price:(this.props.price==0)?'':this.props.price,
+        qnt:(this.props.qnt==0)?'':this.props.qnt,
+    }
 
-    validKey:{},                                //хэш ключей валидации
+    validKey={}                                //хэш ключей валидации
 
-    nameHandler: function(EO){                  //валидация name с корректным приведением значений
+    nameHandler(EO){                  //валидация name с корректным приведением значений
         if (EO.target.value==''){                   //проверка на непустое поле name
             EO.target.style.background='#FCC';
             this.validKey.name=false;
@@ -46,9 +42,9 @@ var GoodsEdit = React.createClass({
             this.validKey.name=true;           
         };
         this.setState({name:EO.target.value.trim().toUpperCase()});    
-    },
+    }
 
-    priceHandler: function(EO){                                         //валидация price с корректным приведением значений
+    priceHandler(EO){                                         //валидация price с корректным приведением значений
         if (/[^0-9.]/.test(EO.target.value||EO.target.value=='')){
             EO.target.style.background='#FCC';
             this.validKey.price=false;
@@ -58,9 +54,9 @@ var GoodsEdit = React.createClass({
             this.validKey.price=true;           
         };
         this.setState({price:Math.round(Number(EO.target.value)*100)/100});    
-    },
+    }
 
-    qntHandler: function(EO){                                           //валидация qnt с корректным приведением значений
+    qntHandler(EO){                                           //валидация qnt с корректным приведением значений
         if (/[^0-9]/.test(EO.target.value||EO.target.value=='')){
             EO.target.style.background='#FCC';
             this.validKey.qnt=false;
@@ -70,18 +66,18 @@ var GoodsEdit = React.createClass({
             this.validKey.qnt=true;           
         };
         this.setState({qnt:parseInt(EO.target.value)});    
-    },
+    }
 
-    descHandler: function(EO){                                    //desc - корректное приведение значений
+    descHandler(EO){                                    //desc - корректное приведение значений
         this.setState({desc:EO.target.value.trim().toLowerCase()});    
-    },
+    }
 
-    saveFormDate: function(){                                  //отправляем данные родителю, предварительно очищаем хэш флагов валидации
+    saveFormDate(){                                  //отправляем данные родителю, предварительно очищаем хэш флагов валидации
         for (let k in this.validKey) delete this.validKey[k];
         this.props.cbSaveEdit(this.state)
-    },
+    }
     
-    checkValidDate: function(){                     //используем для проверки хэш флагов, проверяем их наличие и состояние
+    checkValidDate(){                     //используем для проверки хэш флагов, проверяем их наличие и состояние
         if (this.props.statusButtonOk=='Save'){
             if (Object.keys(this.validKey).length==0) this.saveFormDate()
             else{
@@ -99,35 +95,35 @@ var GoodsEdit = React.createClass({
                 if (joinKey) this.saveFormDate()                
             }
         }
-    },
+    }
 
-    render: function(){
+    render(){
         return  React.DOM.div({className:'hideBlock'},
                 React.DOM.div({className:'goodsEdit'},
                     React.DOM.div({className:'goodsInput'},
                         React.DOM.label({htmlFor:'name'}, 'Название товара:'),
-                        React.DOM.input({type:'text', id:'name', defaultValue:this.state.name, onChange:this.nameHandler})
+                        React.DOM.input({type:'text', id:'name', defaultValue:this.state.name, onChange:(::this.nameHandler)})
                     ),
                     React.DOM.div({className:'goodsInput'},
                         React.DOM.label({htmlFor:'price'}, 'Цена:'),
-                        React.DOM.input({type:'text', id:'price', defaultValue:this.state.price, onChange:this.priceHandler})
+                        React.DOM.input({type:'text', id:'price', defaultValue:this.state.price, onChange:(::this.priceHandler)})
                     ),
                     React.DOM.div({className:'goodsInput'},
                         React.DOM.label({htmlFor:'qnt'}, 'Количество:'),
-                        React.DOM.input({type:'text', id:'qnt', defaultValue:this.state.qnt, onChange:this.qntHandler})
+                        React.DOM.input({type:'text', id:'qnt', defaultValue:this.state.qnt, onChange:(::this.qntHandler)})
                     ),
                     React.DOM.div({className:'goodsInput'},
                         React.DOM.label({htmlFor:'desc'}, 'Описание:'),
-                        React.DOM.textarea({id:'desc', defaultValue:this.state.desc, onChange:this.descHandler})
+                        React.DOM.textarea({id:'desc', defaultValue:this.state.desc, onChange:(::this.descHandler)})
                     ),
                     React.DOM.div(null,
-                        React.DOM.button({onClick:this.checkValidDate},this.props.statusButtonOk),
-                        React.DOM.button({onClick:this.props.cbExitEdit},'Exit')
+                        React.DOM.button({onClick:(::this.checkValidDate)},this.props.statusButtonOk),
+                        React.DOM.button({onClick:(::this.props.cbExitEdit)},'Exit')
                     )
             )
         )
     }
-});
+};
 
 export default GoodsEdit;
 
