@@ -13,10 +13,17 @@ module.exports = {
         filename: "bundle.js"   // название создаваемого файла 
     }, 
     module:{ 
-        rules:[{
-            test: /\.css$/,
-            use: extractCSS.extract({use: ["css-loader"]})
-        }] 
+        rules:[
+            {
+                test: /\.css$/,
+                use: extractCSS.extract({use: ["css-loader"]})
+            },
+            { 
+                test: /\.js$/,                  // какие файлы обрабатывать
+                exclude: /node_modules/,        // какие файлы пропускать
+                use: { loader: "babel-loader" }
+            }
+        ] 
     },
     plugins:[extractCSS]
 }

@@ -1266,7 +1266,7 @@ var CallbackQueue = __webpack_require__(61);
 var PooledClass = __webpack_require__(15);
 var ReactFeatureFlags = __webpack_require__(62);
 var ReactReconciler = __webpack_require__(18);
-var Transaction = __webpack_require__(27);
+var Transaction = __webpack_require__(28);
 
 var invariant = __webpack_require__(1);
 
@@ -2007,7 +2007,7 @@ var _assign = __webpack_require__(4);
 var ReactCurrentOwner = __webpack_require__(10);
 
 var warning = __webpack_require__(2);
-var canDefineProperty = __webpack_require__(24);
+var canDefineProperty = __webpack_require__(25);
 var hasOwnProperty = Object.prototype.hasOwnProperty;
 
 var REACT_ELEMENT_TYPE = __webpack_require__(52);
@@ -2481,7 +2481,7 @@ var cloneElement = ReactElement.cloneElement;
 
 if (process.env.NODE_ENV !== 'production') {
   var lowPriorityWarning = __webpack_require__(33);
-  var canDefineProperty = __webpack_require__(24);
+  var canDefineProperty = __webpack_require__(25);
   var ReactElementValidator = __webpack_require__(54);
   var didWarnPropTypesDeprecated = false;
   createElement = ReactElementValidator.createElement;
@@ -2812,7 +2812,7 @@ module.exports = ReactReconciler;
 
 
 var DOMNamespaces = __webpack_require__(40);
-var setInnerHTML = __webpack_require__(29);
+var setInnerHTML = __webpack_require__(30);
 
 var createMicrosoftUnsafeLocalFunction = __webpack_require__(41);
 var setTextContent = __webpack_require__(66);
@@ -3072,7 +3072,7 @@ module.exports = EventPropagators;
 
 var _prodInvariant = __webpack_require__(3);
 
-var EventPluginRegistry = __webpack_require__(26);
+var EventPluginRegistry = __webpack_require__(27);
 var EventPluginUtils = __webpack_require__(34);
 var ReactErrorUtils = __webpack_require__(35);
 
@@ -3449,6 +3449,16 @@ module.exports = ReactInstanceMap;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+module.exports = __webpack_require__(16);
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright (c) 2013-present, Facebook, Inc.
  *
@@ -3475,7 +3485,7 @@ module.exports = canDefineProperty;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3499,7 +3509,7 @@ module.exports = emptyObject;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3756,7 +3766,7 @@ module.exports = EventPluginRegistry;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3988,7 +3998,7 @@ module.exports = TransactionImpl;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4063,7 +4073,7 @@ SyntheticUIEvent.augmentClass(SyntheticMouseEvent, MouseEventInterface);
 module.exports = SyntheticMouseEvent;
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4164,7 +4174,7 @@ if (ExecutionEnvironment.canUseDOM) {
 module.exports = setInnerHTML;
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4289,7 +4299,7 @@ function escapeTextContentForBrowser(text) {
 module.exports = escapeTextContentForBrowser;
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4305,7 +4315,7 @@ module.exports = escapeTextContentForBrowser;
 
 var _assign = __webpack_require__(4);
 
-var EventPluginRegistry = __webpack_require__(26);
+var EventPluginRegistry = __webpack_require__(27);
 var ReactEventEmitterMixin = __webpack_require__(133);
 var ViewportMetrics = __webpack_require__(65);
 
@@ -4614,16 +4624,6 @@ var ReactBrowserEventEmitter = _assign({}, ReactEventEmitterMixin, {
 });
 
 module.exports = ReactBrowserEventEmitter;
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(16);
-
 
 /***/ }),
 /* 33 */
@@ -5174,7 +5174,7 @@ var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstrumentation = __webpack_require__(8);
 
 var createMicrosoftUnsafeLocalFunction = __webpack_require__(41);
-var setInnerHTML = __webpack_require__(29);
+var setInnerHTML = __webpack_require__(30);
 var setTextContent = __webpack_require__(66);
 
 function getNodeAfter(parentNode, node) {
@@ -6495,8 +6495,8 @@ var _prodInvariant = __webpack_require__(17),
 
 var ReactNoopUpdateQueue = __webpack_require__(51);
 
-var canDefineProperty = __webpack_require__(24);
-var emptyObject = __webpack_require__(25);
+var canDefineProperty = __webpack_require__(25);
+var emptyObject = __webpack_require__(26);
 var invariant = __webpack_require__(1);
 var lowPriorityWarning = __webpack_require__(33);
 
@@ -6816,7 +6816,7 @@ var ReactElement = __webpack_require__(14);
 
 var checkReactTypeSpec = __webpack_require__(88);
 
-var canDefineProperty = __webpack_require__(24);
+var canDefineProperty = __webpack_require__(25);
 var getIteratorFn = __webpack_require__(53);
 var warning = __webpack_require__(2);
 var lowPriorityWarning = __webpack_require__(33);
@@ -7617,8 +7617,8 @@ module.exports = ViewportMetrics;
 
 
 var ExecutionEnvironment = __webpack_require__(6);
-var escapeTextContentForBrowser = __webpack_require__(30);
-var setInnerHTML = __webpack_require__(29);
+var escapeTextContentForBrowser = __webpack_require__(31);
+var setInnerHTML = __webpack_require__(30);
 
 /**
  * Set the textContent property of a node, ensuring that whitespace is preserved
@@ -9038,7 +9038,7 @@ var _prodInvariant = __webpack_require__(3);
 var DOMLazyTree = __webpack_require__(19);
 var DOMProperty = __webpack_require__(13);
 var React = __webpack_require__(16);
-var ReactBrowserEventEmitter = __webpack_require__(31);
+var ReactBrowserEventEmitter = __webpack_require__(32);
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDOMContainerInfo = __webpack_require__(174);
@@ -9051,10 +9051,10 @@ var ReactReconciler = __webpack_require__(18);
 var ReactUpdateQueue = __webpack_require__(47);
 var ReactUpdates = __webpack_require__(11);
 
-var emptyObject = __webpack_require__(25);
+var emptyObject = __webpack_require__(26);
 var instantiateReactComponent = __webpack_require__(72);
 var invariant = __webpack_require__(1);
-var setInnerHTML = __webpack_require__(29);
+var setInnerHTML = __webpack_require__(30);
 var shouldUpdateReactComponent = __webpack_require__(45);
 var warning = __webpack_require__(2);
 
@@ -9595,31 +9595,30 @@ module.exports = getHostComponentFromComposite;
 
 /***/ }),
 /* 82 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom__ = __webpack_require__(98);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_dom__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_iShop3__ = __webpack_require__(184);
 
 
+var _react = __webpack_require__(24);
 
+var _react2 = _interopRequireDefault(_react);
 
+var _reactDom = __webpack_require__(98);
 
+var _reactDom2 = _interopRequireDefault(_reactDom);
 
+var _iShop = __webpack_require__(184);
 
+var _iShop2 = _interopRequireDefault(_iShop);
 
-function initiate(){
-    let product=__webpack_require__(189);
-    __WEBPACK_IMPORTED_MODULE_1_react_dom___default.a.render(
-        __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__components_iShop3__["a" /* default */],{goods:product}), 
-        document.querySelector('section') 
-    );
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function initiate() {
+    var product = __webpack_require__(190);
+    _reactDom2.default.render(_react2.default.createElement(_iShop2.default, { goods: product }), document.querySelector('section'));
 }
-addEventListener('load',initiate);
+addEventListener('load', initiate);
 
 /***/ }),
 /* 83 */
@@ -11185,7 +11184,7 @@ module.exports = factory(Component, isValidElement, ReactNoopUpdateQueue);
 
 var _assign = __webpack_require__(4);
 
-var emptyObject = __webpack_require__(25);
+var emptyObject = __webpack_require__(26);
 var _invariant = __webpack_require__(1);
 
 if (process.env.NODE_ENV !== 'production') {
@@ -13999,7 +13998,7 @@ module.exports = DefaultEventPluginOrder;
 
 var EventPropagators = __webpack_require__(20);
 var ReactDOMComponentTree = __webpack_require__(5);
-var SyntheticMouseEvent = __webpack_require__(28);
+var SyntheticMouseEvent = __webpack_require__(29);
 
 var eventTypes = {
   mouseEnter: {
@@ -14785,8 +14784,8 @@ var DOMNamespaces = __webpack_require__(40);
 var DOMProperty = __webpack_require__(13);
 var DOMPropertyOperations = __webpack_require__(69);
 var EventPluginHub = __webpack_require__(21);
-var EventPluginRegistry = __webpack_require__(26);
-var ReactBrowserEventEmitter = __webpack_require__(31);
+var EventPluginRegistry = __webpack_require__(27);
+var ReactBrowserEventEmitter = __webpack_require__(32);
 var ReactDOMComponentFlags = __webpack_require__(57);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDOMInput = __webpack_require__(135);
@@ -14798,7 +14797,7 @@ var ReactMultiChild = __webpack_require__(138);
 var ReactServerRenderingTransaction = __webpack_require__(147);
 
 var emptyFunction = __webpack_require__(9);
-var escapeTextContentForBrowser = __webpack_require__(30);
+var escapeTextContentForBrowser = __webpack_require__(31);
 var invariant = __webpack_require__(1);
 var isEventSupported = __webpack_require__(37);
 var shallowEqual = __webpack_require__(44);
@@ -16309,7 +16308,7 @@ module.exports = memoizeStringOnly;
 
 
 
-var escapeTextContentForBrowser = __webpack_require__(30);
+var escapeTextContentForBrowser = __webpack_require__(31);
 
 /**
  * Escapes attribute value to prevent scripting attacks.
@@ -17681,7 +17680,7 @@ if (process.env.NODE_ENV !== 'production') {
   var checkReactTypeSpec = __webpack_require__(141);
 }
 
-var emptyObject = __webpack_require__(25);
+var emptyObject = __webpack_require__(26);
 var invariant = __webpack_require__(1);
 var shallowEqual = __webpack_require__(44);
 var shouldUpdateReactComponent = __webpack_require__(45);
@@ -18863,7 +18862,7 @@ module.exports = flattenChildren;
 var _assign = __webpack_require__(4);
 
 var PooledClass = __webpack_require__(15);
-var Transaction = __webpack_require__(27);
+var Transaction = __webpack_require__(28);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactServerUpdateQueue = __webpack_require__(148);
 
@@ -19307,7 +19306,7 @@ var DOMChildrenOperations = __webpack_require__(39);
 var DOMLazyTree = __webpack_require__(19);
 var ReactDOMComponentTree = __webpack_require__(5);
 
-var escapeTextContentForBrowser = __webpack_require__(30);
+var escapeTextContentForBrowser = __webpack_require__(31);
 var invariant = __webpack_require__(1);
 var validateDOMNesting = __webpack_require__(48);
 
@@ -19469,7 +19468,7 @@ module.exports = ReactDOMTextComponent;
 var _assign = __webpack_require__(4);
 
 var ReactUpdates = __webpack_require__(11);
-var Transaction = __webpack_require__(27);
+var Transaction = __webpack_require__(28);
 
 var emptyFunction = __webpack_require__(9);
 
@@ -19742,7 +19741,7 @@ var EventPluginHub = __webpack_require__(21);
 var EventPluginUtils = __webpack_require__(34);
 var ReactComponentEnvironment = __webpack_require__(43);
 var ReactEmptyComponent = __webpack_require__(74);
-var ReactBrowserEventEmitter = __webpack_require__(31);
+var ReactBrowserEventEmitter = __webpack_require__(32);
 var ReactHostComponent = __webpack_require__(75);
 var ReactUpdates = __webpack_require__(11);
 
@@ -19778,10 +19777,10 @@ var _assign = __webpack_require__(4);
 
 var CallbackQueue = __webpack_require__(61);
 var PooledClass = __webpack_require__(15);
-var ReactBrowserEventEmitter = __webpack_require__(31);
+var ReactBrowserEventEmitter = __webpack_require__(32);
 var ReactInputSelection = __webpack_require__(78);
 var ReactInstrumentation = __webpack_require__(8);
-var Transaction = __webpack_require__(27);
+var Transaction = __webpack_require__(28);
 var ReactUpdateQueue = __webpack_require__(47);
 
 /**
@@ -20854,7 +20853,7 @@ var SyntheticClipboardEvent = __webpack_require__(166);
 var SyntheticEvent = __webpack_require__(12);
 var SyntheticFocusEvent = __webpack_require__(167);
 var SyntheticKeyboardEvent = __webpack_require__(168);
-var SyntheticMouseEvent = __webpack_require__(28);
+var SyntheticMouseEvent = __webpack_require__(29);
 var SyntheticDragEvent = __webpack_require__(170);
 var SyntheticTouchEvent = __webpack_require__(171);
 var SyntheticTransitionEvent = __webpack_require__(172);
@@ -21397,7 +21396,7 @@ module.exports = getEventKey;
 
 
 
-var SyntheticMouseEvent = __webpack_require__(28);
+var SyntheticMouseEvent = __webpack_require__(29);
 
 /**
  * @interface DragEvent
@@ -21526,7 +21525,7 @@ module.exports = SyntheticTransitionEvent;
 
 
 
-var SyntheticMouseEvent = __webpack_require__(28);
+var SyntheticMouseEvent = __webpack_require__(29);
 
 /**
  * @interface WheelEvent
@@ -21840,7 +21839,7 @@ module.exports = ReactMount.renderSubtreeIntoContainer;
 
 
 var DOMProperty = __webpack_require__(13);
-var EventPluginRegistry = __webpack_require__(26);
+var EventPluginRegistry = __webpack_require__(27);
 var ReactComponentTreeHook = __webpack_require__(7);
 
 var warning = __webpack_require__(2);
@@ -22086,172 +22085,170 @@ module.exports = ReactDOMInvalidARIAHook;
 
 /***/ }),
 /* 184 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ishop3_css__ = __webpack_require__(185);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ishop3_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ishop3_css__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__GoodsEdit__ = __webpack_require__(186);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__GoodsItem__ = __webpack_require__(188);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__GoodsItem___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__GoodsItem__);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
+var _react = __webpack_require__(24);
 
+var _react2 = _interopRequireDefault(_react);
 
+__webpack_require__(185);
 
+var _GoodsEdit = __webpack_require__(186);
 
-var iShop3 = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createClass({
+var _GoodsEdit2 = _interopRequireDefault(_GoodsEdit);
 
-    propTypes:{
-        goods:__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.arrayOf(
-            __WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.shape({
-                name:__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.string.isRequired,
-                code:__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.number.isRequired,
-                desc:__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.string,
-                price:__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.number.isRequired,
-                qnt:__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.number.isRequired,
-            })
-        ),
+var _GoodsItem = __webpack_require__(188);
+
+var _GoodsItem2 = _interopRequireDefault(_GoodsItem);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var iShop3 = _react2.default.createClass({
+
+    propTypes: {
+        goods: _react2.default.PropTypes.arrayOf(_react2.default.PropTypes.shape({
+            name: _react2.default.PropTypes.string.isRequired,
+            code: _react2.default.PropTypes.number.isRequired,
+            desc: _react2.default.PropTypes.string,
+            price: _react2.default.PropTypes.number.isRequired,
+            qnt: _react2.default.PropTypes.number.isRequired
+        }))
     },
 
-    getInitialState: function(){
-        return{
-            keyEdit: false,                                 //ключ для появления поля редактирования параметров
-            triggerState:false,                             //триггер запуска render                        
-            intGoodsArr:this.props.goods.map(v =>v),         //создаем рабочий массив, клонируем массив props
+    getInitialState: function getInitialState() {
+        return {
+            keyEdit: false, //ключ для появления поля редактирования параметров
+            triggerState: false, //триггер запуска render                        
+            intGoodsArr: this.props.goods.map(function (v) {
+                return v;
+            }) //создаем рабочий массив, клонируем массив props
+        };
+    },
+
+    statusButtonOk: '', //текстовая надпись для кнопки ok окна редактирования
+
+    formValue: {}, //транспортировочный хэш для передачи параметров товара из функций наружу
+
+    newCode: 0, //переменная для трансляции кода для нового товара
+
+    getCode: function getCode() {
+        //функция присваивания уникального номера новому члену массива
+        var code = this.state.intGoodsArr.length + 1;
+        while (this.state.intGoodsArr.some(function (v) {
+            return v.code == code;
+        })) {
+            code--;
+        }return code;
+    },
+
+    getNewGoods: function getNewGoods() {
+        //новый товар
+        this.statusButtonOk = 'Add';
+        this.newCode = this.getCode();
+        this.setState({ keyEdit: true });
+    },
+
+    exitEditGoods: function exitEditGoods() {
+        //выход меню редактирования
+        this.setState({ keyEdit: false });
+    },
+
+    saveNewGoods: function saveNewGoods(hashArg) {
+        //сохранение нового товара
+        this.state.intGoodsArr.push(hashArg);
+        this.setState({ keyEdit: false });
+    },
+
+    saveEditGoods: function saveEditGoods(hashArg) {
+        //сохранение редактирования существующего товара
+        var index;
+        this.state.intGoodsArr.some(function (v, i, a) {
+            index = i;
+            return v.code == hashArg.code;
+        });
+        this.state.intGoodsArr[index] = hashArg;
+        this.setState({ keyEdit: false });
+    },
+
+    editGoodsInList: function editGoodsInList(arg) {
+        //вызов редактирования существующего элемента
+        var index;
+        this.state.intGoodsArr.some(function (v, i, a) {
+            //ищем элемент удовлетворяющий условию - code вызвавшего поля
+            index = i;
+            return v.code == arg;
+        });
+        this.formValue = {
+            code: this.state.intGoodsArr[index].code,
+            name: this.state.intGoodsArr[index].name,
+            desc: this.state.intGoodsArr[index].desc,
+            price: this.state.intGoodsArr[index].price,
+            qnt: this.state.intGoodsArr[index].qnt
+        };
+        this.statusButtonOk = 'Save';
+        this.setState({ keyEdit: true });
+    },
+
+    delGoodsinList: function delGoodsinList(arg) {
+        //вызов удаления существующего элемента
+        if (confirm('Are You sure?')) {
+            var index;
+            this.state.intGoodsArr.some(function (v, i, a) {
+                //ищем элемент удовлетворяющий условию - code вызвавшего поля
+                index = i; //индекс элемента массива с требуемым полем "code" для удаления
+                return v.code == arg;
+            });
+            this.state.intGoodsArr.splice(index, 1); //удаляем элемент
+            this.setState({ triggerState: !this.state.triggerState }); //обновляем страницу
         }
     },
-    
-    statusButtonOk:'',      //текстовая надпись для кнопки ok окна редактирования
 
-    formValue:{},           //транспортировочный хэш для передачи параметров товара из функций наружу
+    render: function render() {
+        var _this = this;
 
-    newCode:0,              //переменная для трансляции кода для нового товара
-
-    getCode: function(){                    //функция присваивания уникального номера новому члену массива
-        let code=this.state.intGoodsArr.length+1;
-        while(this.state.intGoodsArr.some(v => v.code==code)) code--;
-        return code;
-    },
-
-    getNewGoods: function(){            //новый товар
-        this.statusButtonOk='Add';
-        this.newCode=this.getCode();
-        this.setState({keyEdit:true});
-    },
-
-    exitEditGoods: function(){                      //выход меню редактирования
-        this.setState({keyEdit:false});
-    },
-
-    saveNewGoods: function(hashArg){                //сохранение нового товара
-        this.state.intGoodsArr.push(hashArg);
-        this.setState({keyEdit:false});
-    },
-
-    saveEditGoods: function(hashArg){                   //сохранение редактирования существующего товара
-        var index;
-        this.state.intGoodsArr.some(function(v,i,a){
-            index=i;
-            return v.code==hashArg.code;
-        });
-        this.state.intGoodsArr[index]=hashArg;
-        this.setState({keyEdit:false});               
-    },
-
-    editGoodsInList: function(arg){             //вызов редактирования существующего элемента
-        var index;
-        this.state.intGoodsArr.some(function(v,i,a){    //ищем элемент удовлетворяющий условию - code вызвавшего поля
-            index=i;                                    
-            return v.code==arg;
-        });
-        this.formValue={
-            code:this.state.intGoodsArr[index].code,
-            name:this.state.intGoodsArr[index].name,
-            desc:this.state.intGoodsArr[index].desc,
-            price:this.state.intGoodsArr[index].price,
-            qnt:this.state.intGoodsArr[index].qnt
-        };   
-        this.statusButtonOk='Save'; 
-        this.setState({keyEdit:true});
-    },
-
-    delGoodsinList: function(arg){                      //вызов удаления существующего элемента
-        if (confirm('Are You sure?')){
-            var index;
-            this.state.intGoodsArr.some(function(v,i,a){    //ищем элемент удовлетворяющий условию - code вызвавшего поля
-                index=i;                                    //индекс элемента массива с требуемым полем "code" для удаления
-                return v.code==arg;
-            });
-            this.state.intGoodsArr.splice(index,1);                     //удаляем элемент
-            this.setState({triggerState:!this.state.triggerState});     //обновляем страницу
-        }    
-    },
-
-    render: function(){
-        if (this.state.intGoodsArr.length>0){
-            this.state.intGoodsArr.sort(function(a,b){                             //храним масиив state в сортированном виде
-                if (a.name.toLowerCase() > b.name.toLowerCase()) return 1;         //регистронезависимая сортировка для красивого вывода
+        if (this.state.intGoodsArr.length > 0) {
+            this.state.intGoodsArr.sort(function (a, b) {
+                //храним масиив state в сортированном виде
+                if (a.name.toLowerCase() > b.name.toLowerCase()) return 1; //регистронезависимая сортировка для красивого вывода
                 if (a.name.toLowerCase() < b.name.toLowerCase()) return -1;
                 return 0;
             });
-            var outTableCode=this.state.intGoodsArr.map(v =>
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_3__GoodsItem__["default"],
-                    {key:v.code,name:v.name,code:v.code,desc:v.desc,price:v.price,qnt:v.qnt,keyEdit:this.state.keyEdit,
-                        cbEditClick:this.editGoodsInList,cbDelClick:this.delGoodsinList})   
-            );
-            var tableBlock=__WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.table(null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.caption(null, "Товары на складе"),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.tbody(null,
-                            __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.tr(null, 
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.th(null,"Товар"),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.th(null,"Описание"),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.th(null,"Цена"),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.th(null,"Количество"),
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.td(null)),
-                            outTableCode
-                        )
-                    );
-            if (!this.state.keyEdit){               //окна редактирования нет
-                return __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.div(null,
-                    tableBlock,
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.div(null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.button({className:'newButton',onClick:this.getNewGoods},'New position')
-                    )
-                );
-            }
-            else                                    //окно редактирования есть
-                if (this.statusButtonOk=="Add")                 //режим нового товара
-                    return __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.div(null,tableBlock,
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__GoodsEdit__["a" /* default */],
-                                    {statusButtonOk:this.statusButtonOk,
-                                    code:this.newCode,
-                                    cbSaveEdit:this.saveNewGoods,
-                                    cbExitEdit:this.exitEditGoods
-                                    })
-                                )
-                else return __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.div(null,tableBlock,
-                                __WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement(__WEBPACK_IMPORTED_MODULE_2__GoodsEdit__["a" /* default */],                  //режим вызова существующего товара
-                                    {statusButtonOk:this.statusButtonOk,
-                                    code:this.formValue.code,
-                                    name:this.formValue.name,
-                                    desc:this.formValue.desc,
-                                    qnt:this.formValue.qnt,
-                                    price:this.formValue.price,
-                                    cbSaveEdit:this.saveEditGoods,
-                                    cbExitEdit:this.exitEditGoods
-                                    })
-                                )
-        }                
-        else return __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.div(null,__WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.span(null,'Нет товаров'));             //нет товаров в списке вообще
-    },
+            var outTableCode = this.state.intGoodsArr.map(function (v) {
+                return _react2.default.createElement(_GoodsItem2.default, { key: v.code, name: v.name, code: v.code, desc: v.desc, price: v.price, qnt: v.qnt, keyEdit: _this.state.keyEdit,
+                    cbEditClick: _this.editGoodsInList, cbDelClick: _this.delGoodsinList });
+            });
+            var tableBlock = _react2.default.DOM.table(null, _react2.default.DOM.caption(null, "Товары на складе"), _react2.default.DOM.tbody(null, _react2.default.DOM.tr(null, _react2.default.DOM.th(null, "Товар"), _react2.default.DOM.th(null, "Описание"), _react2.default.DOM.th(null, "Цена"), _react2.default.DOM.th(null, "Количество"), _react2.default.DOM.td(null)), outTableCode));
+            if (!this.state.keyEdit) {
+                //окна редактирования нет
+                return _react2.default.DOM.div(null, tableBlock, _react2.default.DOM.div(null, _react2.default.DOM.button({ className: 'newButton', onClick: this.getNewGoods }, 'New position')));
+            } else //окно редактирования есть
+                if (this.statusButtonOk == "Add") //режим нового товара
+                    return _react2.default.DOM.div(null, tableBlock, _react2.default.createElement(_GoodsEdit2.default, { statusButtonOk: this.statusButtonOk,
+                        code: this.newCode,
+                        cbSaveEdit: this.saveNewGoods,
+                        cbExitEdit: this.exitEditGoods
+                    }));else return _react2.default.DOM.div(null, tableBlock, _react2.default.createElement(_GoodsEdit2.default, //режим вызова существующего товара
+                { statusButtonOk: this.statusButtonOk,
+                    code: this.formValue.code,
+                    name: this.formValue.name,
+                    desc: this.formValue.desc,
+                    qnt: this.formValue.qnt,
+                    price: this.formValue.price,
+                    cbSaveEdit: this.saveEditGoods,
+                    cbExitEdit: this.exitEditGoods
+                }));
+        } else return _react2.default.DOM.div(null, _react2.default.DOM.span(null, 'Нет товаров')); //нет товаров в списке вообще
+    }
 });
 
-/* harmony default export */ __webpack_exports__["a"] = (iShop3);
-
+exports.default = iShop3;
 
 /***/ }),
 /* 185 */
@@ -22261,147 +22258,132 @@ var iShop3 = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createClass({
 
 /***/ }),
 /* 186 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(32);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__GoodsEdit_css__ = __webpack_require__(187);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__GoodsEdit_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__GoodsEdit_css__);
 
 
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 
+var _react = __webpack_require__(24);
 
-var GoodsEdit = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createClass({
+var _react2 = _interopRequireDefault(_react);
 
-    propTypes:{
-        code:__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.number.isRequired,
-        name:__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.string,
-        desc:__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.string,
-        price:__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.number,
-        qnt:__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.number,
-        statusButtonOk:__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.string.isRequired,
-        cbExitEdit:__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.func.isRequired,
-        cbSaveEdit:__WEBPACK_IMPORTED_MODULE_0_react___default.a.PropTypes.func.isRequired,
+__webpack_require__(187);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var GoodsEdit = _react2.default.createClass({
+
+    propTypes: {
+        code: _react2.default.PropTypes.number.isRequired,
+        name: _react2.default.PropTypes.string,
+        desc: _react2.default.PropTypes.string,
+        price: _react2.default.PropTypes.number,
+        qnt: _react2.default.PropTypes.number,
+        statusButtonOk: _react2.default.PropTypes.string.isRequired,
+        cbExitEdit: _react2.default.PropTypes.func.isRequired,
+        cbSaveEdit: _react2.default.PropTypes.func.isRequired
     },
 
-    getDefaultProps: function(){
-        return{
-            name:'',
-            desc:'',
-            price:0,
-            qnt:0,
-        }
-    },
-
-    getInitialState: function(){
-        return{
-            code:this.props.code,
-            name:this.props.name,
-            desc:this.props.desc,
-            price:(this.props.price==0)?'':this.props.price,
-            qnt:(this.props.qnt==0)?'':this.props.qnt,
-        }
-    },
-
-    validKey:{},                                //хэш ключей валидации
-
-    nameHandler: function(EO){                  //валидация name с корректным приведением значений
-        if (EO.target.value==''){                   //проверка на непустое поле name
-            EO.target.style.background='#FCC';
-            this.validKey.name=false;
-        }
-        else{
-            EO.target.style.background='#FFF';
-            this.validKey.name=true;           
+    getDefaultProps: function getDefaultProps() {
+        return {
+            name: '',
+            desc: '',
+            price: 0,
+            qnt: 0
         };
-        this.setState({name:EO.target.value.trim().toUpperCase()});    
     },
 
-    priceHandler: function(EO){                                         //валидация price с корректным приведением значений
-        if (/[^0-9.]/.test(EO.target.value||EO.target.value=='')){
-            EO.target.style.background='#FCC';
-            this.validKey.price=false;
-        }
-        else{
-            EO.target.style.background='#FFF';
-            this.validKey.price=true;           
+    getInitialState: function getInitialState() {
+        return {
+            code: this.props.code,
+            name: this.props.name,
+            desc: this.props.desc,
+            price: this.props.price == 0 ? '' : this.props.price,
+            qnt: this.props.qnt == 0 ? '' : this.props.qnt
         };
-        this.setState({price:Math.round(Number(EO.target.value)*100)/100});    
     },
 
-    qntHandler: function(EO){                                           //валидация qnt с корректным приведением значений
-        if (/[^0-9]/.test(EO.target.value||EO.target.value=='')){
-            EO.target.style.background='#FCC';
-            this.validKey.qnt=false;
-        }
-        else{
-            EO.target.style.background='#FFF';
-            this.validKey.qnt=true;           
+    validKey: {}, //хэш ключей валидации
+
+    nameHandler: function nameHandler(EO) {
+        //валидация name с корректным приведением значений
+        if (EO.target.value == '') {
+            //проверка на непустое поле name
+            EO.target.style.background = '#FCC';
+            this.validKey.name = false;
+        } else {
+            EO.target.style.background = '#FFF';
+            this.validKey.name = true;
         };
-        this.setState({qnt:parseInt(EO.target.value)});    
+        this.setState({ name: EO.target.value.trim().toUpperCase() });
     },
 
-    descHandler: function(EO){                                    //desc - корректное приведение значений
-        this.setState({desc:EO.target.value.trim().toLowerCase()});    
+    priceHandler: function priceHandler(EO) {
+        //валидация price с корректным приведением значений
+        if (/[^0-9.]/.test(EO.target.value || EO.target.value == '')) {
+            EO.target.style.background = '#FCC';
+            this.validKey.price = false;
+        } else {
+            EO.target.style.background = '#FFF';
+            this.validKey.price = true;
+        };
+        this.setState({ price: Math.round(Number(EO.target.value) * 100) / 100 });
     },
 
-    saveFormDate: function(){                                  //отправляем данные родителю, предварительно очищаем хэш флагов валидации
-        for (let k in this.validKey) delete this.validKey[k];
-        this.props.cbSaveEdit(this.state)
+    qntHandler: function qntHandler(EO) {
+        //валидация qnt с корректным приведением значений
+        if (/[^0-9]/.test(EO.target.value || EO.target.value == '')) {
+            EO.target.style.background = '#FCC';
+            this.validKey.qnt = false;
+        } else {
+            EO.target.style.background = '#FFF';
+            this.validKey.qnt = true;
+        };
+        this.setState({ qnt: parseInt(EO.target.value) });
     },
-    
-    checkValidDate: function(){                     //используем для проверки хэш флагов, проверяем их наличие и состояние
-        if (this.props.statusButtonOk=='Save'){
-            if (Object.keys(this.validKey).length==0) this.saveFormDate()
-            else{
-                var joinKey=true;
-                for (let k in this.validKey) {
-                    joinKey=joinKey&&this.validKey[k]; 
+
+    descHandler: function descHandler(EO) {
+        //desc - корректное приведение значений
+        this.setState({ desc: EO.target.value.trim().toLowerCase() });
+    },
+
+    saveFormDate: function saveFormDate() {
+        //отправляем данные родителю, предварительно очищаем хэш флагов валидации
+        for (var k in this.validKey) {
+            delete this.validKey[k];
+        }this.props.cbSaveEdit(this.state);
+    },
+
+    checkValidDate: function checkValidDate() {
+        //используем для проверки хэш флагов, проверяем их наличие и состояние
+        if (this.props.statusButtonOk == 'Save') {
+            if (Object.keys(this.validKey).length == 0) this.saveFormDate();else {
+                var joinKey = true;
+                for (var k in this.validKey) {
+                    joinKey = joinKey && this.validKey[k];
                 }
-                if (joinKey) this.saveFormDate()
+                if (joinKey) this.saveFormDate();
             }
-        } 
-        else{
-            if (Object.keys(this.validKey).length==3){
-                var joinKey=true;
-                for (let k in this.validKey) joinKey=joinKey&&this.validKey[k]; 
-                if (joinKey) this.saveFormDate()                
+        } else {
+            if (Object.keys(this.validKey).length == 3) {
+                var joinKey = true;
+                for (var _k in this.validKey) {
+                    joinKey = joinKey && this.validKey[_k];
+                }if (joinKey) this.saveFormDate();
             }
         }
     },
 
-    render: function(){
-        return  __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.div({className:'hideBlock'},
-                __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.div({className:'goodsEdit'},
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.div({className:'goodsInput'},
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.label({htmlFor:'name'}, 'Название товара:'),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.input({type:'text', id:'name', defaultValue:this.state.name, onChange:this.nameHandler})
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.div({className:'goodsInput'},
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.label({htmlFor:'price'}, 'Цена:'),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.input({type:'text', id:'price', defaultValue:this.state.price, onChange:this.priceHandler})
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.div({className:'goodsInput'},
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.label({htmlFor:'qnt'}, 'Количество:'),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.input({type:'text', id:'qnt', defaultValue:this.state.qnt, onChange:this.qntHandler})
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.div({className:'goodsInput'},
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.label({htmlFor:'desc'}, 'Описание:'),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.textarea({id:'desc', defaultValue:this.state.desc, onChange:this.descHandler})
-                    ),
-                    __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.div(null,
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.button({onClick:this.checkValidDate},this.props.statusButtonOk),
-                        __WEBPACK_IMPORTED_MODULE_0_react___default.a.DOM.button({onClick:this.props.cbExitEdit},'Exit')
-                    )
-            )
-        )
+    render: function render() {
+        return _react2.default.DOM.div({ className: 'hideBlock' }, _react2.default.DOM.div({ className: 'goodsEdit' }, _react2.default.DOM.div({ className: 'goodsInput' }, _react2.default.DOM.label({ htmlFor: 'name' }, 'Название товара:'), _react2.default.DOM.input({ type: 'text', id: 'name', defaultValue: this.state.name, onChange: this.nameHandler })), _react2.default.DOM.div({ className: 'goodsInput' }, _react2.default.DOM.label({ htmlFor: 'price' }, 'Цена:'), _react2.default.DOM.input({ type: 'text', id: 'price', defaultValue: this.state.price, onChange: this.priceHandler })), _react2.default.DOM.div({ className: 'goodsInput' }, _react2.default.DOM.label({ htmlFor: 'qnt' }, 'Количество:'), _react2.default.DOM.input({ type: 'text', id: 'qnt', defaultValue: this.state.qnt, onChange: this.qntHandler })), _react2.default.DOM.div({ className: 'goodsInput' }, _react2.default.DOM.label({ htmlFor: 'desc' }, 'Описание:'), _react2.default.DOM.textarea({ id: 'desc', defaultValue: this.state.desc, onChange: this.descHandler })), _react2.default.DOM.div(null, _react2.default.DOM.button({ onClick: this.checkValidDate }, this.props.statusButtonOk), _react2.default.DOM.button({ onClick: this.props.cbExitEdit }, 'Exit'))));
     }
 });
 
-/* harmony default export */ __webpack_exports__["a"] = (GoodsEdit);
-
-  
+exports.default = GoodsEdit;
 
 /***/ }),
 /* 187 */
@@ -22411,12 +22393,82 @@ var GoodsEdit = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createClass({
 
 /***/ }),
 /* 188 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-throw new Error("Module parse failed: Unexpected token (7:21)\nYou may need an appropriate loader to handle this file type.\n| class GoodsItem extends React.Component{\r\n| \r\n|     static propTypes = {\r\n|         name:React.PropTypes.string.isRequired,\r\n|         code:React.PropTypes.number.isRequired,\r");
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(24);
+
+var _react2 = _interopRequireDefault(_react);
+
+__webpack_require__(189);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var GoodsItem = function (_React$Component) {
+    _inherits(GoodsItem, _React$Component);
+
+    function GoodsItem() {
+        _classCallCheck(this, GoodsItem);
+
+        return _possibleConstructorReturn(this, (GoodsItem.__proto__ || Object.getPrototypeOf(GoodsItem)).apply(this, arguments));
+    }
+
+    _createClass(GoodsItem, [{
+        key: 'handlerButtonDel',
+        value: function handlerButtonDel() {
+            if (!this.props.keyEdit) this.props.cbDelClick(this.props.code);
+        }
+    }, {
+        key: 'handlerButtonEdit',
+        value: function handlerButtonEdit() {
+            if (!this.props.keyEdit) this.props.cbEditClick(this.props.code);
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+            return _react2.default.DOM.tr({ className: 'goodsItem' }, _react2.default.DOM.td(null, this.props.name), _react2.default.DOM.td(null, this.props.desc), _react2.default.DOM.td(null, this.props.price.toFixed(2)), _react2.default.DOM.td(null, this.props.qnt), _react2.default.DOM.td(null, _react2.default.DOM.button({ onClick: this.handlerButtonEdit }, 'Edit'), _react2.default.DOM.button({ onClick: this.handlerButtonDel }, 'Delete')));
+        }
+    }]);
+
+    return GoodsItem;
+}(_react2.default.Component);
+
+GoodsItem.propTypes = {
+    name: _react2.default.PropTypes.string.isRequired,
+    code: _react2.default.PropTypes.number.isRequired,
+    desc: _react2.default.PropTypes.string,
+    qnt: _react2.default.PropTypes.number.isRequired,
+    price: _react2.default.PropTypes.number.isRequired,
+    keyEdit: _react2.default.PropTypes.bool.isRequired,
+    cbEditClick: _react2.default.PropTypes.func.isRequired,
+    cbDelClick: _react2.default.PropTypes.func.isRequired
+};
+;
+
+exports.default = GoodsItem;
 
 /***/ }),
 /* 189 */
+/***/ (function(module, exports) {
+
+// removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 190 */
 /***/ (function(module, exports) {
 
 module.exports = [{"name":"NEOLINE X-COP 4500","code":1,"desc":"радар-детектор","price":219.99,"qnt":2},{"name":"NEOLINE X-COP 5700","code":2,"desc":"радар-детектор","price":329.99,"qnt":12},{"name":"NEOLINE X-COP 7500s","code":3,"desc":"радар-детектор","price":259.99,"qnt":1},{"name":"NEOLINE X-COP 9000","code":4,"desc":"гибрид","price":429.99,"qnt":24},{"name":"NEOLINE X-COP 9700","code":5,"desc":"гибрид","price":599.99,"qnt":9},{"name":"NEOLINE X-COP 9000c","code":6,"desc":"гибрид","price":339.99,"qnt":3},{"name":"NEOLINE X-COP 9100","code":7,"desc":"гибрид","price":499.99,"qnt":11},{"name":"ALLIGATOR A-1S","code":8,"desc":"автосигнализация","price":79.99,"qnt":52}]
