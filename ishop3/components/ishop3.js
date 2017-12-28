@@ -1,4 +1,6 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import DOM from 'react-dom-factories';
 
 import './ishop3.css';
 
@@ -8,16 +10,16 @@ import GoodsItem from './GoodsItem';
 class iShop3 extends React.Component{
 
     static propTypes = {
-        goods:React.PropTypes.arrayOf(
-            React.PropTypes.shape({
-                name:React.PropTypes.string.isRequired,
-                code:React.PropTypes.number.isRequired,
-                desc:React.PropTypes.string,
-                price:React.PropTypes.number.isRequired,
-                qnt:React.PropTypes.number.isRequired,
+        goods:PropTypes.arrayOf(
+            PropTypes.shape({
+                name:PropTypes.string.isRequired,
+                code:PropTypes.number.isRequired,
+                desc:PropTypes.string,
+                price:PropTypes.number.isRequired,
+                qnt:PropTypes.number.isRequired,
             })
         ),
-    }
+    };
 
     state = {
         keyEdit: false,                                 //ключ для появления поля редактирования параметров
@@ -103,29 +105,29 @@ class iShop3 extends React.Component{
                     {key:v.code,name:v.name,code:v.code,desc:v.desc,price:v.price,qnt:v.qnt,keyEdit:this.state.keyEdit,
                         cbEditClick:this.editGoodsInList,cbDelClick:this.delGoodsinList})   
             );
-            var tableBlock=React.DOM.table(null,
-                        React.DOM.caption(null, "Товары на складе"),
-                        React.DOM.tbody(null,
-                            React.DOM.tr(null, 
-                                React.DOM.th(null,"Товар"),
-                                React.DOM.th(null,"Описание"),
-                                React.DOM.th(null,"Цена"),
-                                React.DOM.th(null,"Количество"),
-                                React.DOM.td(null)),
+            var tableBlock=DOM.table(null,
+                        DOM.caption(null, "Товары на складе"),
+                        DOM.tbody(null,
+                            DOM.tr(null, 
+                                DOM.th(null,"Товар"),
+                                DOM.th(null,"Описание"),
+                                DOM.th(null,"Цена"),
+                                DOM.th(null,"Количество"),
+                                DOM.td(null)),
                             outTableCode
                         )
                     );
             if (!this.state.keyEdit){               //окна редактирования нет
-                return React.DOM.div(null,
+                return DOM.div(null,
                     tableBlock,
-                    React.DOM.div(null,
-                        React.DOM.button({className:'newButton',onClick:this.getNewGoods},'New position')
+                    DOM.div(null,
+                        DOM.button({className:'newButton',onClick:this.getNewGoods},'New position')
                     )
                 );
             }
             else                                    //окно редактирования есть
                 if (this.statusButtonOk=="Add")                 //режим нового товара
-                    return React.DOM.div(null,tableBlock,
+                    return DOM.div(null,tableBlock,
                                 React.createElement(GoodsEdit,
                                     {statusButtonOk:this.statusButtonOk,
                                     code:this.newCode,
@@ -133,7 +135,7 @@ class iShop3 extends React.Component{
                                     cbExitEdit:this.exitEditGoods
                                     })
                                 )
-                else return React.DOM.div(null,tableBlock,
+                else return DOM.div(null,tableBlock,
                                 React.createElement(GoodsEdit,                  //режим вызова существующего товара
                                     {statusButtonOk:this.statusButtonOk,
                                     code:this.formValue.code,
@@ -146,7 +148,7 @@ class iShop3 extends React.Component{
                                     })
                                 )
         }                
-        else return React.DOM.div(null,React.DOM.span(null,'Нет товаров'));             //нет товаров в списке вообще
+        else return DOM.div(null,DOM.span(null,'Нет товаров'));             //нет товаров в списке вообще
     }
 };
 

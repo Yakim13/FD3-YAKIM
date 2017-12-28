@@ -20,7 +20,9 @@
     "webpack": "^3.8.1"
   },
   "dependencies": {
-    "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "prop-types": "^15.6.0",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-dom-factories": "^1.0.2"
   }
 }

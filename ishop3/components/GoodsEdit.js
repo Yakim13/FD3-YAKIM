@@ -1,21 +1,23 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import DOM from 'react-dom-factories';
 
 import './GoodsEdit.css';
 
 class GoodsEdit extends React.Component{
 
     static propTypes = {
-        code:React.PropTypes.number.isRequired,
-        name:React.PropTypes.string,
-        desc:React.PropTypes.string,
-        price:React.PropTypes.number,
-        qnt:React.PropTypes.number,
-        statusButtonOk:React.PropTypes.string.isRequired,
-        cbExitEdit:React.PropTypes.func.isRequired,
-        cbSaveEdit:React.PropTypes.func.isRequired,
+        code:PropTypes.number.isRequired,
+        name:PropTypes.string,
+        desc:PropTypes.string,
+        price:PropTypes.number,
+        qnt:PropTypes.number,
+        statusButtonOk:PropTypes.string.isRequired,
+        cbExitEdit:PropTypes.func.isRequired,
+        cbSaveEdit:PropTypes.func.isRequired,
     }
 
-    defaultProps ={
+    static defaultProps ={
         name:'',
         desc:'',
         price:0,
@@ -98,27 +100,27 @@ class GoodsEdit extends React.Component{
     }
 
     render(){
-        return  React.DOM.div({className:'hideBlock'},
-                React.DOM.div({className:'goodsEdit'},
-                    React.DOM.div({className:'goodsInput'},
-                        React.DOM.label({htmlFor:'name'}, 'Название товара:'),
-                        React.DOM.input({type:'text', id:'name', defaultValue:this.state.name, onChange:(::this.nameHandler)})
+        return  DOM.div({className:'hideBlock'},
+                DOM.div({className:'goodsEdit'},
+                    DOM.div({className:'goodsInput'},
+                        DOM.label({htmlFor:'name'}, 'Название товара:'),
+                        DOM.input({type:'text', id:'name', defaultValue:this.state.name, onChange:(::this.nameHandler)})
                     ),
-                    React.DOM.div({className:'goodsInput'},
-                        React.DOM.label({htmlFor:'price'}, 'Цена:'),
-                        React.DOM.input({type:'text', id:'price', defaultValue:this.state.price, onChange:(::this.priceHandler)})
+                    DOM.div({className:'goodsInput'},
+                        DOM.label({htmlFor:'price'}, 'Цена:'),
+                        DOM.input({type:'text', id:'price', defaultValue:this.state.price, onChange:(::this.priceHandler)})
                     ),
-                    React.DOM.div({className:'goodsInput'},
-                        React.DOM.label({htmlFor:'qnt'}, 'Количество:'),
-                        React.DOM.input({type:'text', id:'qnt', defaultValue:this.state.qnt, onChange:(::this.qntHandler)})
+                    DOM.div({className:'goodsInput'},
+                        DOM.label({htmlFor:'qnt'}, 'Количество:'),
+                        DOM.input({type:'text', id:'qnt', defaultValue:this.state.qnt, onChange:(::this.qntHandler)})
                     ),
-                    React.DOM.div({className:'goodsInput'},
-                        React.DOM.label({htmlFor:'desc'}, 'Описание:'),
-                        React.DOM.textarea({id:'desc', defaultValue:this.state.desc, onChange:(::this.descHandler)})
+                    DOM.div({className:'goodsInput'},
+                        DOM.label({htmlFor:'desc'}, 'Описание:'),
+                        DOM.textarea({id:'desc', defaultValue:this.state.desc, onChange:(::this.descHandler)})
                     ),
-                    React.DOM.div(null,
-                        React.DOM.button({onClick:(::this.checkValidDate)},this.props.statusButtonOk),
-                        React.DOM.button({onClick:(::this.props.cbExitEdit)},'Exit')
+                    DOM.div(null,
+                        DOM.button({onClick:(::this.checkValidDate)},this.props.statusButtonOk),
+                        DOM.button({onClick:(::this.props.cbExitEdit)},'Exit')
                     )
             )
         )

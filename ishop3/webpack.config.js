@@ -7,23 +7,23 @@ const extractCSS = new ExtractTextPlugin({
 });
 
 module.exports = { 
-    entry:"./main.js",     
+    entry: "./main.js", 
     output:{ 
-        path: __dirname,        // путь к каталогу выходных файлов
-        filename: "bundle.js"   // название создаваемого файла 
+        path: __dirname, 
+        filename: "bundle.js"   
     }, 
     module:{ 
         rules:[
+            { 
+                test: /\.js$/,                      // какие файлы обрабатывать
+                exclude: /node_modules/,            // какие файлы пропускать
+                use: { loader: "babel-loader" }
+            },
             {
                 test: /\.css$/,
                 use: extractCSS.extract({use: ["css-loader"]})
-            },
-            { 
-                test: /\.js$/,                  // какие файлы обрабатывать
-                exclude: /node_modules/,        // какие файлы пропускать
-                use: { loader: "babel-loader" }
-            }
+            }            
         ] 
     },
-    plugins:[extractCSS]
+    plugins: [extractCSS]
 }

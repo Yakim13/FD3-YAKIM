@@ -1,18 +1,20 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import DOM from 'react-dom-factories';
 
 import './GoodsItem.css';
 
 class GoodsItem extends React.Component{
 
     static propTypes={
-        name:React.PropTypes.string.isRequired,
-        code:React.PropTypes.number.isRequired,
-        desc:React.PropTypes.string,
-        qnt:React.PropTypes.number.isRequired,
-        price:React.PropTypes.number.isRequired,
-        keyEdit:React.PropTypes.bool.isRequired,
-        cbEditClick:React.PropTypes.func.isRequired,
-        cbDelClick:React.PropTypes.func.isRequired,
+        name:PropTypes.string.isRequired,
+        code:PropTypes.number.isRequired,
+        desc:PropTypes.string,
+        qnt:PropTypes.number.isRequired,
+        price:PropTypes.number.isRequired,
+        keyEdit:PropTypes.bool.isRequired,
+        cbEditClick:PropTypes.func.isRequired,
+        cbDelClick:PropTypes.func.isRequired,
     }
 
     constructor(props){
@@ -30,14 +32,14 @@ class GoodsItem extends React.Component{
     }
 
     render(){
-        return  React.DOM.tr({className:'goodsItem'},
-                            React.DOM.td(null,this.props.name),
-                            React.DOM.td(null,this.props.desc),
-                            React.DOM.td(null,this.props.price.toFixed(2)),
-                            React.DOM.td(null,this.props.qnt),
-                            React.DOM.td(null,
-                                React.DOM.button({onClick:this.handlerButtonEdit},'Edit'),
-                                React.DOM.button({onClick:this.handlerButtonDel},'Delete'),
+        return  DOM.tr({className:'goodsItem'},
+                            DOM.td(null,this.props.name),
+                            DOM.td(null,this.props.desc),
+                            DOM.td(null,this.props.price.toFixed(2)),
+                            DOM.td(null,this.props.qnt),
+                            DOM.td(null,
+                                DOM.button({onClick:this.handlerButtonEdit},'Edit'),
+                                DOM.button({onClick:this.handlerButtonDel},'Delete'),
                             )
         )
     }
