@@ -1,13 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DOM from 'react-dom-factories';
 
 import './ishop3.css';
 
 import GoodsEdit from './GoodsEdit';
 import GoodsItem from './GoodsItem';
 
-class iShop3 extends React.Component{
+class IShop3 extends React.Component{
 
     static propTypes = {
         goods:PropTypes.arrayOf(
@@ -101,55 +100,74 @@ class iShop3 extends React.Component{
                 return 0;
             });
             var outTableCode=this.state.intGoodsArr.map(v =>
-                React.createElement(GoodsItem,
-                    {key:v.code,name:v.name,code:v.code,desc:v.desc,price:v.price,qnt:v.qnt,keyEdit:this.state.keyEdit,
-                        cbEditClick:this.editGoodsInList,cbDelClick:this.delGoodsinList})   
+                <GoodsItem
+                    key={v.code}
+                    name={v.name}
+                    code={v.code}
+                    desc={v.desc}
+                    price={v.price}
+                    qnt={v.qnt}
+                    keyEdit={this.state.keyEdit}
+                    cbEditClick={this.editGoodsInList}
+                    cbDelClick={this.delGoodsinList}
+                />   
             );
-            var tableBlock=DOM.table(null,
-                        DOM.caption(null, "Товары на складе"),
-                        DOM.tbody(null,
-                            DOM.tr(null, 
-                                DOM.th(null,"Товар"),
-                                DOM.th(null,"Описание"),
-                                DOM.th(null,"Цена"),
-                                DOM.th(null,"Количество"),
-                                DOM.td(null)),
-                            outTableCode
-                        )
-                    );
+            var tableBlock=(
+                <table>
+                    <caption>Товары на складе</caption>
+                    <tbody>
+                        <tr> 
+                            <th>Товар</th>
+                            <th>Описание</th>
+                            <th>Цена</th>
+                            <th>Количество</th>
+                            <td></td>
+                        </tr>
+                        {outTableCode}
+                    </tbody>
+                </table>                
+            );
             if (!this.state.keyEdit){               //окна редактирования нет
-                return DOM.div(null,
-                    tableBlock,
-                    DOM.div(null,
-                        DOM.button({className:'newButton',onClick:this.getNewGoods},'New position')
-                    )
-                );
+                return(
+                    <div>
+                        {tableBlock}
+                        <div>
+                            <button className='newButton' onClick={this.getNewGoods}>New position</button>
+                        </div>
+                    </div>
+                )
             }
             else                                    //окно редактирования есть
                 if (this.statusButtonOk=="Add")                 //режим нового товара
-                    return DOM.div(null,tableBlock,
-                                React.createElement(GoodsEdit,
-                                    {statusButtonOk:this.statusButtonOk,
-                                    code:this.newCode,
-                                    cbSaveEdit:this.saveNewGoods,
-                                    cbExitEdit:this.exitEditGoods
-                                    })
-                                )
-                else return DOM.div(null,tableBlock,
-                                React.createElement(GoodsEdit,                  //режим вызова существующего товара
-                                    {statusButtonOk:this.statusButtonOk,
-                                    code:this.formValue.code,
-                                    name:this.formValue.name,
-                                    desc:this.formValue.desc,
-                                    qnt:this.formValue.qnt,
-                                    price:this.formValue.price,
-                                    cbSaveEdit:this.saveEditGoods,
-                                    cbExitEdit:this.exitEditGoods
-                                    })
-                                )
+                    return( 
+                        <div>
+                            {tableBlock}
+                            <GoodsEdit
+                                statusButtonOk={this.statusButtonOk}
+                                code={this.newCode}
+                                cbSaveEdit={this.saveNewGoods}
+                                cbExitEdit={this.exitEditGoods}
+                            />
+                        </div>
+                    )
+                else return(                //режим вызова существующего товара
+                    <div>
+                        {tableBlock}
+                        <GoodsEdit                  
+                            statusButtonOk={this.statusButtonOk}
+                            code={this.formValue.code}
+                            name={this.formValue.name}
+                            desc={this.formValue.desc}
+                            qnt={this.formValue.qnt}
+                            price={this.formValue.price}
+                            cbSaveEdit={this.saveEditGoods}
+                            cbExitEdit={this.exitEditGoods}
+                        />
+                    </div>
+                )
         }                
-        else return DOM.div(null,DOM.span(null,'Нет товаров'));             //нет товаров в списке вообще
+        else return (<div><span>Нет товаров</span></div>);             //нет товаров в списке вообще
     }
 };
 
-export default iShop3;
+export default IShop3;

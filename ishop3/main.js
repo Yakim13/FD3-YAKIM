@@ -3,13 +3,13 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-import iShop3 from './components/iShop3';
+import IShop3 from './components/iShop3';
 
 
 function initiate(){
     let product=require('./product.json');
     ReactDOM.render(
-        React.createElement(iShop3,{goods:product}), 
+        <IShop3 goods={product}/>, 
         document.querySelector('section') 
     );
 }

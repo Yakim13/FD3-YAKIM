@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import DOM from 'react-dom-factories';
 
 import './GoodsItem.css';
 
@@ -32,16 +31,18 @@ class GoodsItem extends React.Component{
     }
 
     render(){
-        return  DOM.tr({className:'goodsItem'},
-                            DOM.td(null,this.props.name),
-                            DOM.td(null,this.props.desc),
-                            DOM.td(null,this.props.price.toFixed(2)),
-                            DOM.td(null,this.props.qnt),
-                            DOM.td(null,
-                                DOM.button({onClick:this.handlerButtonEdit},'Edit'),
-                                DOM.button({onClick:this.handlerButtonDel},'Delete'),
-                            )
-        )
+        return(
+            <tr className='goodsItem'>
+                <td>{this.props.name}</td>
+                <td>{this.props.desc}</td>
+                <td>{this.props.price.toFixed(2)}</td>
+                <td>{this.props.qnt}</td>
+                <td>
+                    <button onClick={this.handlerButtonEdit}>Edit</button>
+                    <button onClick={this.handlerButtonDel}>Delete</button>
+                </td>
+            </tr>
+        )                
     }
 };
 
