@@ -35,6 +35,7 @@ class RainbowFrame extends React.Component{
     RepeatFrameBuild(arrPos) {              //построение элемента - рекурсия
         return( 
             <ColorFrame color={this.intColorsArr[arrPos]}>
+                <b>Ура!</b>
                 {arrPos===0
                     ?<button onClick={this.buttonHandler}>Change!</button>
                     :this.RepeatFrameBuild(arrPos-1)
