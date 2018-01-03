@@ -8,7 +8,9 @@ import RainbowFrame from './components/RainbowFrame';
 function initiate(){
     let colorArr=require('./colors.json');
     ReactDOM.render(
-        <RainbowFrame colorList={colorArr}/>, 
+        <RainbowFrame colorList={colorArr}>
+            <b>Ура!!</b>
+        </RainbowFrame>, 
         document.querySelector('section') 
     );
 }
