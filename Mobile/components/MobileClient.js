@@ -6,6 +6,7 @@ import './MobileClient.css';
 class MobileClient extends React.PureComponent {
 
   static propTypes = {
+    cbSelectClient:PropTypes.func.isRequired,
     info:PropTypes.shape({
       id: PropTypes.number.isRequired,
       fio: PropTypes.string.isRequired,
@@ -22,14 +23,18 @@ class MobileClient extends React.PureComponent {
     this.setState({info:newProps.info});
   };
 
+  selectClient=()=>{
+    this.props.cbSelectClient(this.state.info)
+  }
+
   render() {
 
     console.log("MobileClient id="+this.state.info.id+" render");
     
     return (
-      <div className='MobileClient'>
-        <span className='MobileClientBalance'>{this.state.info.balance}</span>
+      <div className='MobileClient' onClick={this.selectClient}>
         <span className='MobileClientFIO'>{this.state.info.fio}</span>
+        <span className={this.state.info.balance<0?'MobileClientBalance Blocked':'MobileClientBalance'}>{this.state.info.balance}</span>
       </div>
     );
 

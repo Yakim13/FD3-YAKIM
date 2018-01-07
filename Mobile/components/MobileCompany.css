@@ -1,17 +1,37 @@
-﻿.MobileCompany
-{
-  border: double gray 3px;
-  width: 180px;
-  padding: 3px 7px;
-  background-color: lightyellow;
+﻿*{
+  margin: 0px;
+  padding: 0px;
 }
-
-.MobileCompanyName
-{
-  font-weight: bold;
+body{
+  text-align: center;
+  background: #EEE;
 }
-
-.MobileCompanyClients
-{
-  padding-top: 5px;
+h1,h2{
+  background: #ccc;
+}
+section{
+  padding: 20px;
+  position: relative;
+  background: -webkit-linear-gradient(top, #CCC, #EEE);
+}
+hr{
+  width: 100%;
+  margin: auto;
+}
+button{
+  background: -webkit-linear-gradient(top, #33f, #ddF);
+  color: white;
+  border-radius: 10px 10px;
+  margin: 10px;
+  width: 4em;
+}
+div.MobileCompanyClients{
+  width: 70%;
+  margin: auto;
+  background: rgb(231, 223, 223);
+}
+.propertySort input{
+  margin: 5px;
+  width: inherit;
+  vertical-align: middle;
 }
