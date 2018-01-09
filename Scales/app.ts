@@ -40,24 +40,23 @@ class Tomato extends Product{
 
 class Scale{
 
-    pieceOnScale:[string,number];           //!!?? добавить в качестве type или как-то иначе
-    scalePan:Array<[string,number]>=[];     //!!?? внутрь содержимого Array не удалось!!
-    totalWeight:number=0;
+    scalePan:Array<Product>=[];     
 
     add(_item:Product):void{
-        this.totalWeight+=_item.getScale();
-        this.scalePan.push([_item.getName(),_item.getScale()]);
+        this.scalePan.push(_item);
         console.log(`Добавляем на весы ${_item.getName()} с весом ${_item.getScale()}`)
     }
 
     getSumScale():void{
-        console.log(`Общий вес продуктов на весах:${this.totalWeight}`);
+        let totalWeight:number=0;
+        for (let val of this.scalePan) totalWeight+=val.getScale();
+        console.log(`Общий вес продуктов на весах:${totalWeight}`);
     }
 
     getNameList():void{
         console.log('На весах сейчас:');
         for (let val of this.scalePan){ 
-            console.log(`${val[0]} с весом ${val[1]}`);
+            console.log(`${val.getName()} с весом ${val.getScale()}`);
         }
     }
 }
