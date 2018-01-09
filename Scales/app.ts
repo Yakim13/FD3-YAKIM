@@ -22,12 +22,9 @@ class Product{
 
 class Apple extends Product{
 
-    getWeight():number{                 //как в super засунуть результат этого метода в качестве аргумента??
-        return Math.floor((Math.random()/2+0.2)*100)/100;
-    }
-
     constructor(){
-        super('Apple', Math.floor((Math.random()/2+0.2)*100)/100);
+        let curWght:number=Math.floor((Math.random()/2+0.2)*100)/100;
+        super('Apple', curWght);
     }
 }
 
@@ -35,20 +32,22 @@ class Apple extends Product{
 class Tomato extends Product{
 
     constructor(){
-        super('Tomato', Math.floor((Math.random()/2+0.1)*100)/100);
+        let curWght:number=Math.floor((Math.random()/2+0.1)*100)/100;        
+        super('Tomato', curWght);
     }
 }
 
 
 class Scale{
 
-    scalePan:Array<string>=[]
+    pieceOnScale:[string,number];           //!!?? добавить в качестве type или как-то иначе
+    scalePan:Array<[string,number]>=[];     //!!?? внутрь содержимого Array не удалось!!
     totalWeight:number=0;
 
     add(_item:Product):void{
         this.totalWeight+=_item.getScale();
-        this.scalePan.push(_item.getName());
-        console.log(`добавлен ${_item.getName()} на весы`);
+        this.scalePan.push([_item.getName(),_item.getScale()]);
+        console.log(`Добавляем на весы ${_item.getName()} с весом ${_item.getScale()}`)
     }
 
     getSumScale():void{
@@ -58,7 +57,7 @@ class Scale{
     getNameList():void{
         console.log('На весах сейчас:');
         for (let val of this.scalePan){ 
-            console.log(val);
+            console.log(`${val[0]} с весом ${val[1]}`);
         }
     }
 }
