@@ -19,7 +19,7 @@ class ClientEdit extends React.PureComponent{
         balance:0,
     }
 
-    state = {
+    statePseudo={
         id:this.props.id,
         fio:this.props.fio,
         balance:this.props.balance,
@@ -27,33 +27,45 @@ class ClientEdit extends React.PureComponent{
 
     validKey={}                                //хэш ключей валидации
 
-    fioHandler=(EO)=>{               
-        if (EO.target.value==''){                  
-            EO.target.style.background='#FCC';
+    fioNewRef=null;                             //ссылка на поле ввода фамилии
+
+    balanceNewRef=null;                         //ссылка на поле ввода баланса
+
+    set_balanceNewRef=(ref)=>{
+        this.balanceNewRef=ref;
+    };
+
+    set_fioNewRef=(ref)=>{
+      this.fioNewRef=ref;
+    };
+  
+    fioHandler=()=>{                        //в боевой версии обязательно завернуть в if(this.fioNewRef)!!!
+        if (this.fioNewRef.value==''){                  
+            this.fioNewRef.style.background='#FCC';
             this.validKey.name=false;
         }
         else{
-            EO.target.style.background='#FFF';
+            this.fioNewRef.style.background='#FFF';
             this.validKey.name=true;           
         };
-        this.setState({fio:EO.target.value.trim().toLowerCase().split(' ').map(v=>v.charAt(0).toUpperCase()+v.slice(1)).join(' ')});
+        this.statePseudo.fio=this.fioNewRef.value.trim().toLowerCase().split(' ').map(v=>v.charAt(0).toUpperCase()+v.slice(1)).join(' ');
     }
 
-    balanceHandler=(EO)=>{                                        
-        if (/[^0-9.-]/.test(EO.target.value||EO.target.value=='')){
-            EO.target.style.background='#FCC';
+    balanceHandler=()=>{                            //в боевой версии обязательно завернуть в if(this.balanceNewRef)!!!            
+        if (/[^0-9.-]/.test(this.balanceNewRef.value||this.balanceNewRef.value=='')){
+            this.balanceNewRef.style.background='#FCC';
             this.validKey.price=false;
         }
         else{
-            EO.target.style.background='#FFF';
+            this.balanceNewRef.style.background='#FFF';
             this.validKey.price=true;           
         };
-        this.setState({balance:Math.round(Number(EO.target.value)*100)/100});    
+        this.statePseudo.balance=Math.round(Number(this.balanceNewRef.value)*100)/100;    
     }
 
     saveFormDate=()=>{                                  //отправляем данные родителю, предварительно очищаем хэш флагов валидации
         for (let k in this.validKey) delete this.validKey[k];
-        this.props.cbSaveEdit(this.state)
+        this.props.cbSaveEdit(this.statePseudo)
     }
     
     checkValidDate=()=>{                     //используем для проверки хэш флагов, проверяем их наличие и состояние
@@ -76,6 +88,7 @@ class ClientEdit extends React.PureComponent{
         }
     }
 
+
     render(){
         console.log('ClientEdit render');
         return(
@@ -83,11 +96,13 @@ class ClientEdit extends React.PureComponent{
                 <div className='Edit'>
                     <div className='Input'>
                         <label htmlFor='name'>Фамилия:</label>
-                        <input type='text' id='name' defaultValue={this.state.fio} onChange={this.fioHandler}/>
+                        <input type='text' id='name' defaultValue={this.statePseudo.fio} 
+                            ref={this.set_fioNewRef} onChange={this.fioHandler}/>
                     </div>
                     <div className='Input'>
                         <label htmlFor='balance'>Баланс:</label>
-                        <input type='text' id='balance' defaultValue={this.state.balance==0?'':this.state.balance} onChange={this.balanceHandler}/>
+                        <input type='text' id='balance' defaultValue={this.statePseudo.balance==0?'':this.statePseudo.balance} 
+                            ref={this.set_balanceNewRef} onChange={this.balanceHandler}/>
                     </div>         
                     <div>
                         <button onClick={this.checkValidDate}>{this.props.statusButtonOk}</button>
