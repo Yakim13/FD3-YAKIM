@@ -52,7 +52,7 @@ class ScalesStorageEngineArray implements IStorageEngine{
     }
 
     getItem(index){
-        let Prod=this.items[index-1];
+        let Prod=this.items[index];
         return Prod;
     }
 
@@ -67,7 +67,7 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine{
                                         //для этого url, иначе необходимо менять систему данных, поскольку для одного
     constructor(){                      //url доступно только одно localStorage
         localStorage.clear();
-        this.counter=1;
+        this.counter=0;
     }
 
      addItem(item:Product):void{
@@ -102,14 +102,14 @@ class Scales <StorageEngine extends IStorageEngine>{
 
     getSumScale():void{
         let totalWeight:number=0;
-        for (let i=1; i<=this.curStorage.getCount();i++)
+        for (let i=0; i<this.curStorage.getCount();i++)
             totalWeight+=this.curStorage.getItem(i).weight;     //.getScale() не получилось, потому что JSON.parse возвращает тип object
         console.log(`Общий вес продуктов на весах:${totalWeight}`);
     }
 
     getNameList():void{
         console.log('На весах сейчас:');
-        for (let i=1; i<=this.curStorage.getCount();i++){
+        for (let i=0; i<this.curStorage.getCount();i++){
 
             //вот это не работает с localStorage ??!!
             //вызов методов продукта невозможен, потому что JSON.parse возвращает тип object, а не Product
