@@ -1,3 +1,7 @@
+function uniFactory<objtype>(classRef:{new(): objtype; }):objtype{
+    return new classRef();
+}
+
 class Product{
 
     name:string;
@@ -42,11 +46,12 @@ interface IStorageEngine{
     getCount():number;
 }
 
-class ScalesStorageEngineArray implements IStorageEngine{
+class ScalesStorageEngineArray <Things extends Product> implements IStorageEngine{
 
-    items:Array<Product>=[];
+    Things:Product;
+    items:Array<Things>=[];
 
-    addItem(item:Product):void{
+    addItem(item:Things):void{
         this.items.push(item);
         console.log(`Добавляем на весы (Array) ${item.getName()} с весом ${item.getScale()}`)
     }
@@ -61,8 +66,9 @@ class ScalesStorageEngineArray implements IStorageEngine{
     }
 }
 
-class ScalesStorageEngineLocalStorage implements IStorageEngine{
-    
+class ScalesStorageEngineLocalStorage <Things extends Product> implements IStorageEngine{
+
+    Things:Product;    
     counter:number;                     //класс написан с учетом что экземпляр этого класса будет только один
                                         //для этого url, иначе необходимо менять систему данных, поскольку для одного
     constructor(){                      //url доступно только одно localStorage
@@ -70,16 +76,16 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine{
         this.counter=0;
     }
 
-     addItem(item:Product):void{
+     addItem(item:Things):void{
         localStorage.setItem(this.counter.toString(),JSON.stringify(item));
         console.log(`Добавляем на весы(localStorage) ${item.getName()} с весом ${item.getScale()}`)
         this.counter++;
     }
 
     getItem(index){
-        let prod:Product;
+        let prod:Things;
         if (localStorage[index.toString()]!==undefined)
-            prod=JSON.parse(localStorage[index.toString()]);
+            prod=<Things>JSON.parse(localStorage[index.toString()]);
         return prod;
     }
 
@@ -90,10 +96,12 @@ class ScalesStorageEngineLocalStorage implements IStorageEngine{
 
 class Scales <StorageEngine extends IStorageEngine>{
 
-    curStorage: StorageEngine;
-    
-    constructor(_storage:StorageEngine){
-        this.curStorage=_storage;
+    curStorage: IStorageEngine;
+
+    constructor(_typeStorage){
+        _typeStorage==ScalesStorageEngineLocalStorage
+        ?this.curStorage=uniFactory(ScalesStorageEngineLocalStorage)
+        :this.curStorage=uniFactory(ScalesStorageEngineArray);
     }
 
     add(item:Product):void{
@@ -113,7 +121,7 @@ class Scales <StorageEngine extends IStorageEngine>{
 
             //вот это не работает с localStorage ??!!
             //вызов методов продукта невозможен, потому что JSON.parse возвращает тип object, а не Product
-            //let weigth:number=this.curStorage.getItem(i).getScale();  
+            // let weigth:number=this.curStorage.getItem(i).getScale();  
             //let name:string=this.curStorage.getItem(i).getName();
             
             let weigth:number=this.curStorage.getItem(i).weight;
@@ -131,11 +139,9 @@ let a3=new Apple;
 let t1=new Tomato;
 let t2=new Tomato;
 let t3=new Tomato;
-let storArr=new ScalesStorageEngineArray;
-let storStor=new ScalesStorageEngineLocalStorage;
 
-let scalArr=new Scales<ScalesStorageEngineArray>(storArr);
-let scalStor=new Scales<ScalesStorageEngineLocalStorage>(storStor);
+let scalArr=new Scales<ScalesStorageEngineArray<Product>>(ScalesStorageEngineArray);
+let scalStor=new Scales<ScalesStorageEngineLocalStorage<Product>>(ScalesStorageEngineLocalStorage);
 
 scalArr.add(a1);
 scalArr.add(a2);
