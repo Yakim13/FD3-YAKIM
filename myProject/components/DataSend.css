@@ -1,0 +1,11 @@
+﻿.ControlCheckBox{
+  float: left;
+  padding-left: 10%; 
+}
+.ControlInfo{
+  margin-left: 15%;
+  text-align: left;
+}
+.DataSend{
+  font-size: small;
+}

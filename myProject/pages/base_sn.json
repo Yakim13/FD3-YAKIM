@@ -1,0 +1,7 @@
+[
+    {"sn":"000001","vendor":"NEOLINE","class":"Радар-детектор","subclass":"с GPS","name":"X-COP 7500s"},
+    {"sn":"000002","vendor":"ALLIGATOR","class":"Автосигнализация","subclass":"двусторонняя","name":"SP-75RS"},
+    {"sn":"000003","vendor":"ADVOCAM","class":"Автомобильный видеорегистратор","subclass":"без GPS","name":"FD BLACK"},
+    {"sn":"000004","vendor":"PROLOGY","class":"Автомобильный ресивер","subclass":"USB/SD","name":"CMX-120"},
+    {"sn":"000004","vendor":"PROLOGY","class":"Автомобильный ресивер","subclass":"USB/SD","name":"CMX-150"}
+]

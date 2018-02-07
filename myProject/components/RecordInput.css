@@ -1,0 +1,71 @@
+﻿.RecordInput{
+    width: auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.RecordInput>div{
+    margin: 10px;
+    width: 350px;
+    flex: 1 1 auto;
+    background-color: rgb(174, 196, 243)
+}
+.InputBox{
+    width: auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    text-align: left;
+}
+.InputBox>div{
+    width: 200px;
+    padding: 0px 10px 10px 10px;
+    flex: 1 1 auto;
+    line-height: 16px;
+}
+.InputBox span{
+    font-size: smaller;
+}
+.InputBox select{
+    width: 100%;
+}
+.RecordInput option.title{
+    color:#ccc;
+}
+.waitingGoods{
+    animation: myanimation 3s ease-in-out 2s infinite normal none;
+}
+@keyframes myanimation{
+    0%{
+        color: black;
+    }
+    50%{
+        color: red;
+    }			
+    100%{
+        color: black;
+    }
+}
+.radioBlock{
+    text-align: left;
+    padding-left: 25%;
+    vertical-align: middle;
+}
+.radioBlock input{
+    margin: 0px 5px -5px 0px;
+}
+.Sn{
+    width: 50%;
+}
+.RecordInputField input{
+    vertical-align: middle;
+}
+.RecordInputField span{
+    vertical-align: middle;
+}
+.InfoBar{
+    border: 1px solid black;
+    width: 75%;
+    margin: 10px auto;
+    padding: 5px;
+}

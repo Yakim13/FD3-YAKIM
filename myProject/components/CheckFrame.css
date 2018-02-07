@@ -1,0 +1,13 @@
+﻿.PageCheck{
+    padding: 10px;
+}
+
+.CheckFrame{
+    background-color: rgb(174, 196, 243);
+    height: 400px;
+}
+
+.OutputCheck{
+    margin: 20px 40px;
+    border-top: 1px solid black;
+}

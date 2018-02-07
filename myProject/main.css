@@ -1,0 +1,24 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+body{
+    margin: 1% 1%;
+    text-align: center;
+    font: normal 15px Oswald, verdana, sans-seriff;
+    border: 1px solid;
+    border-color: rgba(43, 52, 179, 0.616);
+}
+section{
+    background: #eee;
+}
+@font-face{
+    font-family: Oswald;
+    src: url(./fonts/oswald/Oswald-Regular.ttf);
+}
+
+nav,footer{
+    background: rgba(43, 52, 179, 0.616);
+    color: #fff;
+    padding: 3px;
+}

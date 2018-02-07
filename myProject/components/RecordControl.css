@@ -1,0 +1,39 @@
+﻿.RecordControl{
+    border-top:1px solid rgba(43, 52, 179, 0.616);
+    border-bottom: 1px solid rgba(43, 52, 179, 0.616);   
+}
+
+.RecordControl>div{
+    margin: 10px;
+    background-color: rgb(174, 196, 243);
+    padding-bottom: 10px;
+}
+.ScanList{
+    width: 50%;
+    margin: 0px auto;
+    border: 1px solid black;
+    height: 300px;
+    overflow-y: auto;
+}
+.ScanList>div:nth-child(even){
+    background-color: rgb(93, 122, 179);
+}
+.ButtonBlock{
+    width: 50%;
+    margin: 0px auto;
+    display:flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.Button{
+    margin: 10px;
+    width: 100px;
+    flex: 1 1 auto;
+    background: rgba(43, 52, 179, 0.616);
+    color: white;
+    border-radius: 5px 5px;
+}
+.Button:hover{
+    background: rgb(43, 52, 179); 
+    cursor: pointer;
+}
