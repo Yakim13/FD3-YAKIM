@@ -2,57 +2,72 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import './CheckFrame.css';
+import FrameBoxContent from './FrameBoxContent';
 
 class CheckFrame extends React.PureComponent {
 
   constructor(props){
     super(props);
     this.state={
-      outputInfo:this.OUTPUT_INFO_DEFAULT,
+      outputInfo:this.OUTPUT_INFO_DEFAULT,        //статус получения информации
+      flagFrameBox: false,                        //флаг вывода информационного окна
     };
-    //this.loadData();
+    this.loadData();
   }
 
   OUTPUT_INFO_DEFAULT='Ожидается ввод серийного номера'     //начальное значение переменной state
-  loadStatusInner=''
-
-  snArr=[             //временное использование - пока для тестирования!!!
-    {"sn":"000001","vendor":"NEOLINE","class":"Радар-детектор","subclass":"с GPS","name":"X-COP 7500s"},
-    {"sn":"000002","vendor":"ALLIGATOR","class":"Автосигнализация","subclass":"двусторонняя","name":"SP-75RS"},
-    {"sn":"000003","vendor":"ADVOCAM","class":"Автомобильный видеорегистратор","subclass":"без GPS","name":"FD BLACK"},
-    {"sn":"000004","vendor":"PROLOGY","class":"Автомобильный ресивер","subclass":"USB/SD","name":"CMX-120"},
-    {"sn":"000004","vendor":"PROLOGY","class":"Автомобильный ресивер","subclass":"USB/SD","name":"CMX-150"},
-  ]
+  innerBoxContent=''            //элемент внутреннего содержимого всплывающего компонента FrameBoxContent
+  snArr=[]                      //массив для хранения полученных с сервера через AJAX значений серийных номеров
+  messageBox=''                 //переменная для передачи тектового заголовка всплывающего компонента FrameBoxContent
+  timer=0                      //таймер для алгоритма закрытия всплывающего компонента FrameBoxContent
 
   loadData=()=>{
-    let url="http://ljanka.by/testwork/serial.dat";
-    //let url="base_sn.json";
+    let url="http://localhost/hndlrout.php";
+    //let url="http://ljanka.by/testwork/hndlrin.php"
     let request=new XMLHttpRequest();
     request.responseType='json';
-    //request.addEventListener('loadstart',this.startRequest);	
-    //request.addEventListener('progress',this.statusRequest);	
     request.addEventListener('load',this.endRequest);
-    request.open("GET", url, true);
+    //request.addEventListener('loadstart',this.startRequest);	
+    //request.addEventListener('progress',this.statusRequest);
+    request.open("POST", url, true);
     request.send(null);
   }
-
-  startRequest=()=>{
-    this.loadStatusInner=(<progress value="0" max="100">0%</progress>);
+  
+  startRequest=()=>{          //метод для отображения процесса загрузки ?перспектива
+    this.innerBoxContent=(<progress value="0" max="100">0%</progress>);
   }
 
-  statusRequest=(EO)=>{
+  statusRequest=(EO)=>{       ////метод для отображения процесса загрузки ?перспектива
     if (EO.lengthComputable){
       let per=parseInt(EO.loaded/EO.total*100);
-      this.loadStatusInner=(<progress value={per} max="100">{per}%</progress>);
+      this.innerBoxContent=(<progress value={per} max="100">{per}%</progress>);
     }
   }
 
   endRequest=(EO)=>{
     let data=EO.target;
-      if (data.status==200){
-        this.snArr=data.response;
-        console.log(this.snArr);            //убрать после тестирования!!
-      }
+    if (data.status==200){
+      this.snArr=data.response;
+      this.messageBox="Данные успешно загружены!";
+      this.innerBoxContent=`Код ответа сервера:${data.status}, Статус:${data.statusText}`;
+      setTimeout(this.closeFrameBox,500);
+      console.log(this.snArr);                                //work!!!trash! delete after
+      this.setState({flagFrameBox:true});
+    }
+    else{
+      this.messageBox="Ошибка загрузки!";      
+      this.innerBoxContent=`Код ответа сервера:${data.status}, Статус:${data.statusText}`;
+      setTimeout(this.closeFrameBox,1000);
+      this.setState({flagFrameBox:true});      
+    }
+  }
+
+  closeFrameBox=()=>{
+    if (this.timer){
+      clearTimeout(this.timer);
+      this.timer=0;
+    }
+    this.setState({flagFrameBox:false});
   }
   
   inputSnHandler=(EO)=>{
@@ -101,6 +116,11 @@ class CheckFrame extends React.PureComponent {
         <div className="OutputCheck">
           {this.state.outputInfo}
         </div>
+        {this.state.flagFrameBox&&
+          <FrameBoxContent message={this.messageBox}>
+            {this.innerBoxContent}
+          </FrameBoxContent>
+        }
       </div>
     )
   

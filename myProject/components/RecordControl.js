@@ -112,7 +112,8 @@ class RecordControl extends React.PureComponent{
     let data=new FormData();
     let sendData=JSON.stringify(this.newSnArr);
     data.append('data', sendData);
-    let url="http://ljanka.by/testwork/hndlrin.php"
+    let url="http://localhost/hndlrin.php";
+    //let url="http://ljanka.by/testwork/hndlrin.php"
     let request=new XMLHttpRequest();
     request.addEventListener('load',this.showProcess);
     request.open("POST", url, true);

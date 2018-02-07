@@ -1,0 +1,21 @@
+.HideBlock{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    background: rgba(255, 255, 255, 0.0);
+    top: 0px;
+    left: 0px;
+}
+.FrameBoxContent{
+    border: 1px solid black;
+    width: 30%;
+    padding: 10px;
+    margin: auto;
+    background:  -webkit-linear-gradient(top, #CCC, #FFF);
+    position: absolute;
+    top: 40%;
+    left: 30%;
+}
+.FrameBoxContent>div{
+    margin-bottom: 10px;
+}

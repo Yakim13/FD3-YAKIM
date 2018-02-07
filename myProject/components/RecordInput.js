@@ -7,7 +7,7 @@ import CheckInfo from './CheckInfo';
 
 class RecordInput extends React.PureComponent {
 
-  static propTypes={
+  static propTypes={                  //ajax здесь прикрутить!!
     goods:PropTypes.arrayOf(
         PropTypes.shape(
           {
@@ -527,7 +527,6 @@ class RecordInput extends React.PureComponent {
           : <div>
               <input type="text" className="Sn" disabled/>
               <p className="waitingGoods">Ожидание ввода данных товара</p>
-              <p><i>{`${this.state.vendor} ${this.state.name} (${this.state.class} ${this.state.subclass})`}</i></p>
             </div>
           }
           {this.state.flagInfoRender&&
