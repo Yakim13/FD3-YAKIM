@@ -7,20 +7,6 @@ import CheckInfo from './CheckInfo';
 
 class RecordInput extends React.PureComponent {
 
-  static propTypes={                  //ajax здесь прикрутить!!
-    goods:PropTypes.arrayOf(
-        PropTypes.shape(
-          {
-            sn: PropTypes.string.isRequired,
-            vendor: PropTypes.string.isRequired,
-            class: PropTypes.string.isRequired,
-            subclass: PropTypes.string.isRequired,
-            name: PropTypes.string.isRequired
-          }
-        )
-    )
-  }
-
   DEFVAL='none'                         //константа для значения невыбранного значения (значения по умолчанию) select
   FIELD_ADD_TEXT='Новое значение'       //константа для значения поля ADD в select
 
@@ -33,12 +19,15 @@ class RecordInput extends React.PureComponent {
       subclass:this.DEFVAL,
       flagInfoRender:false,
       flagExtRender:false,
+      flagLoadAjaxRender:false,
     };
-    this.workDateArr=this.props.goods.map(v=>v);
+    this.loadData();
+    //this.workDateArr=require('./base_sn.json');
     this.vendorArr=this.setArray('vendor');       //массив вендоров текущей сессии (выдается в select)
     this.vendorArr.push(this.FIELD_ADD_TEXT);
   }
 
+  workDateArr=[]          //массив который принимает данные  ajax
   nameArr=[]              //массив имен текущей сессии (выдается в select)
   classArr=[]             //массив классов товара текущей сессии (выдается в select)
   subclassArr=[]          //массив подклассов товара текущей сессии (выдается в select)
@@ -63,6 +52,30 @@ class RecordInput extends React.PureComponent {
 
   componentDidUpdate=()=>{
     if(this.RefSnField) this.RefSnField.focus();
+  }
+
+  loadData=()=>{
+    let url="http://localhost/hndlrout.php";
+    //let url="http://ljanka.by/testwork/hndlrin.php"
+    let request=new XMLHttpRequest();
+    request.responseType='json';
+    request.addEventListener('load',this.endRequest);
+    request.open("POST", url, true);
+    request.send(null);
+  }
+
+  endRequest=(EO)=>{
+    let data=EO.target;
+    if (data.status==200){
+      console.log('RecordInput done ajax');
+      this.workDateArr=data.response;
+      this.vendorArr=this.setArray('vendor');
+      this.vendorArr.push(this.FIELD_ADD_TEXT);
+      this.setState({flagLoadAjaxRender:!this.flagLoadAjaxRender});
+    }
+    else{     
+      alert(`Код ответа сервера:${data.status}, Статус:${data.statusText}`);      
+    }
   }
 
   validationRE=(re,val)=>{
