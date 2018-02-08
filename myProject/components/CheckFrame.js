@@ -22,8 +22,8 @@ class CheckFrame extends React.PureComponent {
   timer=0                      //таймер для алгоритма закрытия всплывающего компонента FrameBoxContent
 
   loadData=()=>{
-    let url="http://localhost/hndlrout.php";
-    //let url="http://ljanka.by/testwork/hndlrin.php"
+    //let url="http://localhost/hndlrout.php";
+    let url="http://ljanka.by/testwork/hndlrout.php"
     let request=new XMLHttpRequest();
     request.responseType='json';
     request.addEventListener('load',this.endRequest);
@@ -37,7 +37,7 @@ class CheckFrame extends React.PureComponent {
     this.innerBoxContent=(<progress value="0" max="100">0%</progress>);
   }
 
-  statusRequest=(EO)=>{       ////метод для отображения процесса загрузки ?перспектива
+  statusRequest=(EO)=>{       //метод для отображения процесса загрузки ?перспектива
     if (EO.lengthComputable){
       let per=parseInt(EO.loaded/EO.total*100);
       this.innerBoxContent=(<progress value={per} max="100">{per}%</progress>);
@@ -51,7 +51,6 @@ class CheckFrame extends React.PureComponent {
       this.messageBox="Данные успешно загружены!";
       this.innerBoxContent=`Код ответа сервера:${data.status}, Статус:${data.statusText}`;
       setTimeout(this.closeFrameBox,500);
-      console.log(this.snArr);                                //work!!!trash! delete after
       this.setState({flagFrameBox:true});
     }
     else{

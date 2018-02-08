@@ -22,7 +22,6 @@ class RecordInput extends React.PureComponent {
       flagLoadAjaxRender:false,
     };
     this.loadData();
-    //this.workDateArr=require('./base_sn.json');
     this.vendorArr=this.setArray('vendor');       //массив вендоров текущей сессии (выдается в select)
     this.vendorArr.push(this.FIELD_ADD_TEXT);
   }
@@ -55,8 +54,8 @@ class RecordInput extends React.PureComponent {
   }
 
   loadData=()=>{
-    let url="http://localhost/hndlrout.php";
-    //let url="http://ljanka.by/testwork/hndlrin.php"
+    //let url="http://localhost/hndlrout.php";
+    let url="http://ljanka.by/testwork/hndlrout.php"
     let request=new XMLHttpRequest();
     request.responseType='json';
     request.addEventListener('load',this.endRequest);
@@ -67,7 +66,6 @@ class RecordInput extends React.PureComponent {
   endRequest=(EO)=>{
     let data=EO.target;
     if (data.status==200){
-      console.log('RecordInput done ajax');
       this.workDateArr=data.response;
       this.vendorArr=this.setArray('vendor');
       this.vendorArr.push(this.FIELD_ADD_TEXT);
@@ -347,7 +345,7 @@ class RecordInput extends React.PureComponent {
         let indexBegin;
         let indexEnd;
         if (indexStart<indexStop){
-          indexBegin=indexStart+1;        //значение с номером соответсвующим indexStart уже передано в inputControl
+          indexBegin=indexStart+1;        //значение с номером соответствующим indexStart уже передано в inputControl
           indexEnd=indexStop;
         }
         else{
