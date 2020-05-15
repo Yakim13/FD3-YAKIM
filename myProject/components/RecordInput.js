@@ -54,8 +54,8 @@ class RecordInput extends React.PureComponent {
   }
 
   loadData=()=>{
-    //let url="http://localhost/hndlrout.php";
-    let url="http://ljanka.by/testwork/hndlrout.php"
+    let url="http://localhost/hndlrout.php";
+    //let url="http://ljanka.by/testwork/hndlrout.php"
     let request=new XMLHttpRequest();
     request.responseType='json';
     request.addEventListener('load',this.endRequest);

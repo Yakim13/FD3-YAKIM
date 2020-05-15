@@ -22,8 +22,8 @@ class CheckFrame extends React.PureComponent {
   timer=0                      //таймер для алгоритма закрытия всплывающего компонента FrameBoxContent
 
   loadData=()=>{
-    //let url="http://localhost/hndlrout.php";
-    let url="http://ljanka.by/testwork/hndlrout.php"
+    let url="http://localhost/hndlrout.php";
+    //let url="http://ljanka.by/testwork/hndlrout.php"
     let request=new XMLHttpRequest();
     request.responseType='json';
     request.addEventListener('load',this.endRequest);
